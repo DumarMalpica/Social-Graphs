@@ -1,0 +1,162 @@
+{
+  "Tunja": {
+    "degree": 0.210526,
+    "betweenness": 0.0,
+    "closeness": 0.558824,
+    "pagerank": 0.021064,
+    "clustering": 1.0,
+    "eigenvector": 0.222222
+  },
+  "Sogamoso": {
+    "degree": 0.578947,
+    "betweenness": 0.0,
+    "closeness": 0.703704,
+    "pagerank": 0.045513,
+    "clustering": 0.745455,
+    "eigenvector": 0.611111
+  },
+  "Chiquinquirá": {
+    "degree": 0.842105,
+    "betweenness": 0.0,
+    "closeness": 0.863636,
+    "pagerank": 0.063041,
+    "clustering": 0.666667,
+    "eigenvector": 0.888889
+  },
+  "Duitama": {
+    "degree": 0.684211,
+    "betweenness": 0.0,
+    "closeness": 0.76,
+    "pagerank": 0.052757,
+    "clustering": 0.75641,
+    "eigenvector": 0.722222
+  },
+  "Paipa": {
+    "degree": 0.684211,
+    "betweenness": 0.0,
+    "closeness": 0.76,
+    "pagerank": 0.052006,
+    "clustering": 0.794872,
+    "eigenvector": 0.722222
+  },
+  "Villa de Leyva": {
+    "degree": 0.421053,
+    "betweenness": 0.0,
+    "closeness": 0.633333,
+    "pagerank": 0.035028,
+    "clustering": 0.75,
+    "eigenvector": 0.444444
+  },
+  "Moniquirá": {
+    "degree": 0.789474,
+    "betweenness": 0.0,
+    "closeness": 0.826087,
+    "pagerank": 0.060125,
+    "clustering": 0.666667,
+    "eigenvector": 0.833333
+  },
+  "Samacá": {
+    "degree": 0.789474,
+    "betweenness": 0.0,
+    "closeness": 0.826087,
+    "pagerank": 0.059094,
+    "clustering": 0.752381,
+    "eigenvector": 0.833333
+  },
+  "Ráquira": {
+    "degree": 0.578947,
+    "betweenness": 0.0,
+    "closeness": 0.703704,
+    "pagerank": 0.045333,
+    "clustering": 0.8,
+    "eigenvector": 0.611111
+  },
+  "Nobsa": {
+    "degree": 0.473684,
+    "betweenness": 0.0,
+    "closeness": 0.655172,
+    "pagerank": 0.038366,
+    "clustering": 0.861111,
+    "eigenvector": 0.5
+  },
+  "Tibasosa": {
+    "degree": 0.631579,
+    "betweenness": 0.0,
+    "closeness": 0.730769,
+    "pagerank": 0.048878,
+    "clustering": 0.727273,
+    "eigenvector": 0.666667
+  },
+  "Firavitoba": {
+    "degree": 0.421053,
+    "betweenness": 0.0,
+    "closeness": 0.633333,
+    "pagerank": 0.034632,
+    "clustering": 0.928571,
+    "eigenvector": 0.444444
+  },
+  "Aquitania": {
+    "degree": 0.684211,
+    "betweenness": 0.0,
+    "closeness": 0.76,
+    "pagerank": 0.052289,
+    "clustering": 0.717949,
+    "eigenvector": 0.722222
+  },
+  "Tota": {
+    "degree": 0.947368,
+    "betweenness": 0.0,
+    "closeness": 0.95,
+    "pagerank": 0.070747,
+    "clustering": 0.633987,
+    "eigenvector": 1.0
+  },
+  "Gámeza": {
+    "degree": 0.789474,
+    "betweenness": 0.0,
+    "closeness": 0.826087,
+    "pagerank": 0.059267,
+    "clustering": 0.714286,
+    "eigenvector": 0.833333
+  },
+  "Tópaga": {
+    "degree": 0.578947,
+    "betweenness": 0.0,
+    "closeness": 0.703704,
+    "pagerank": 0.045057,
+    "clustering": 0.818182,
+    "eigenvector": 0.611111
+  },
+  "Mongua": {
+    "degree": 0.894737,
+    "betweenness": 0.0,
+    "closeness": 0.904762,
+    "pagerank": 0.067338,
+    "clustering": 0.632353,
+    "eigenvector": 0.944444
+  },
+  "Socha": {
+    "degree": 0.684211,
+    "betweenness": 0.0,
+    "closeness": 0.76,
+    "pagerank": 0.051946,
+    "clustering": 0.782051,
+    "eigenvector": 0.722222
+  },
+  "Jericó": {
+    "degree": 0.789474,
+    "betweenness": 0.0,
+    "closeness": 0.826087,
+    "pagerank": 0.059398,
+    "clustering": 0.704762,
+    "eigenvector": 0.833333
+  },
+  "Belén": {
+    "degree": 0.473684,
+    "betweenness": 0.0,
+    "closeness": 0.655172,
+    "pagerank": 0.03812,
+    "clustering": 0.861111,
+    "eigenvector": 0.5
+  }
+}

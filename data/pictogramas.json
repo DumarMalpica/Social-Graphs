@@ -1,0 +1,115 @@
+[
+  {
+    "id": "P-001",
+    "sitio": "Cerro de Monserrate Sogamoso",
+    "tipo": "antropomorfo",
+    "antiguedad_aprox": 2231,
+    "estado_conservacion": "regular"
+  },
+  {
+    "id": "P-002",
+    "sitio": "Cuevas del Indio Ráquira",
+    "tipo": "geométrico",
+    "antiguedad_aprox": 1136,
+    "estado_conservacion": "bueno"
+  },
+  {
+    "id": "P-003",
+    "sitio": "Alto de los Molinos Tunja",
+    "tipo": "geométrico",
+    "antiguedad_aprox": 918,
+    "estado_conservacion": "bueno"
+  },
+  {
+    "id": "P-004",
+    "sitio": "Abrigos de Iza y Firavitoba",
+    "tipo": "solar",
+    "antiguedad_aprox": 896,
+    "estado_conservacion": "regular"
+  },
+  {
+    "id": "P-005",
+    "sitio": "Piedra Pintada de Tibasosa",
+    "tipo": "geométrico",
+    "antiguedad_aprox": 2972,
+    "estado_conservacion": "regular"
+  },
+  {
+    "id": "P-006",
+    "sitio": "Farallones de Gámeza",
+    "tipo": "zoomorfo",
+    "antiguedad_aprox": 2381,
+    "estado_conservacion": "deteriorado"
+  },
+  {
+    "id": "P-007",
+    "sitio": "Cerro de la Culebra Tópaga",
+    "tipo": "zoomorfo",
+    "antiguedad_aprox": 2050,
+    "estado_conservacion": "bueno"
+  },
+  {
+    "id": "P-008",
+    "sitio": "Abrigo del Lago de Tota",
+    "tipo": "abstracto",
+    "antiguedad_aprox": 1700,
+    "estado_conservacion": "deteriorado"
+  },
+  {
+    "id": "P-009",
+    "sitio": "Lajas de Aquitania",
+    "tipo": "abstracto",
+    "antiguedad_aprox": 1981,
+    "estado_conservacion": "deteriorado"
+  },
+  {
+    "id": "P-010",
+    "sitio": "Peñas del Morro en Mongua",
+    "tipo": "antropomorfo",
+    "antiguedad_aprox": 784,
+    "estado_conservacion": "bueno"
+  },
+  {
+    "id": "P-011",
+    "sitio": "Cueva de la Salina en Socha",
+    "tipo": "antropomorfo",
+    "antiguedad_aprox": 1685,
+    "estado_conservacion": "bueno"
+  },
+  {
+    "id": "P-012",
+    "sitio": "Alto de la Cruz en Jericó",
+    "tipo": "antropomorfo",
+    "antiguedad_aprox": 913,
+    "estado_conservacion": "regular"
+  },
+  {
+    "id": "P-013",
+    "sitio": "Piedras de Belén",
+    "tipo": "geométrico",
+    "antiguedad_aprox": 2357,
+    "estado_conservacion": "deteriorado"
+  },
+  {
+    "id": "P-014",
+    "sitio": "Abrigos de Villa de Leyva",
+    "tipo": "geométrico",
+    "antiguedad_aprox": 1166,
+    "estado_conservacion": "regular"
+  },
+  {
+    "id": "P-015",
+    "sitio": "Cerro del Cacique en Duitama",
+    "tipo": "geométrico",
+    "antiguedad_aprox": 1358,
+    "estado_conservacion": "deteriorado"
+  },
+  {
+    "id": "P-MPBKEC47",
+    "sitio": "Pictograma pricnipal",
+    "tipo": "antropomorfo",
+    "estado_conservacion": "regular",
+    "antiguedad_aprox": 0,
+    "file": "P-MPBKEC47.jpg"
+  }
+]

@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pictograma - Rupestre AI</title>
+  <script src="https://cdn.jsdelivr.net/npm/cytoscape@3.28.1/dist/cytoscape.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/cytoscape-cola@2.5.1/build/cytoscape-cola.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sigma@2.4.0/build/sigma.min.js"></script>
+  <style>
+    :root {
+      --ink: #1f2421;
+      --line: #d8ded8;
+      --bg: #f4f8f5;
+      --accent: #1d9e75;
+      --accent-light: #e8f5f1;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+
+    .header {
+      background: white;
+      border-bottom: 1px solid var(--line);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+      color: var(--ink);
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #16a86f;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+    }
+
+    .btn-secondary:hover {
+      background: var(--accent-light);
+    }
+
+    .container {
+      display: grid;
+      grid-template-columns: 280px 1fr 1fr;
+      gap: 0;
+      height: calc(100vh - 64px);
+    }
+
+    .sidebar {
+      background: white;
+      border-right: 1px solid var(--line);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-header {
+      padding: 16px;
+      border-bottom: 1px solid var(--line);
+      font-weight: 600;
+      font-size: 13px;
+      text-transform: uppercase;
+      color: #666;
+    }
+
+    .search-filters {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 150px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      font-size: 13px;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-light);
+    }
+
+    .filter-select {
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      font-size: 13px;
+      cursor: pointer;
+      background: white;
+      outline: none;
+    }
+
+    .filter-select:focus {
+      border-color: var(--accent);
+    }
+
+    .pictograma-list {
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .pictograma-item {
+      padding: 12px 16px;
+      border-bottom: 1px solid #f0f0f0;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .pictograma-item:hover {
+      background: var(--accent-light);
+    }
+
+    .pictograma-item.active {
+      background: var(--accent-light);
+      border-left: 3px solid var(--accent);
+      padding-left: 13px;
+    }
+
+    .pictograma-item-title {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .pictograma-item-meta {
+      font-size: 12px;
+      color: #999;
+    }
+
+    .section {
+      background: white;
+      border-right: 1px solid var(--line);
+      padding: 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .section:last-child {
+      border-right: none;
+      grid-row: 1 / 3;
+    }
+
+    .section-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      color: var(--ink);
+    }
+
+    .image-upload-area {
+      border: 2px dashed var(--line);
+      border-radius: 8px;
+      padding: 32px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .image-upload-area:hover {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .image-upload-area.has-image {
+      border-style: solid;
+      border-color: var(--line);
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .image-upload-area img {
+      max-width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+    }
+
+    .upload-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+      color: #ccc;
+    }
+
+    .upload-text {
+      color: #999;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+
+    .upload-subtext {
+      color: #ccc;
+      font-size: 12px;
+    }
+
+    .upload-btn {
+      background: white;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 16px;
+    }
+
+    .upload-btn:hover {
+      background: var(--accent-light);
+    }
+
+    #imageInput {
+      display: none;
+    }
+
+    .graph-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #cytoscape {
+      flex: 1;
+      border-radius: 4px;
+      background: #fafafa;
+    }
+
+    .table-section {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .aportes-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      flex: 1;
+      overflow-y: auto;
+    }
+
+    .aportes-table thead {
+      background: #f9f9f9;
+      position: sticky;
+      top: 0;
+    }
+
+    .aportes-table th {
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+      color: #666;
+      border-bottom: 2px solid var(--line);
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .aportes-table td {
+      padding: 12px;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .aportes-table tbody tr:hover {
+      background: #f9f9f9;
+    }
+
+    .aportes-table tbody tr.new-row {
+      animation: highlightRow 0.6s ease;
+    }
+
+    @keyframes highlightRow {
+      from {
+        background: #c8e6c9;
+      }
+      to {
+        background: transparent;
+      }
+    }
+
+    .municipio-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+
+    .badge-color {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .tipo-aporte {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: capitalize;
+    }
+
+    .tipo-aporte.imagen {
+      background: #fce8e8;
+      color: #c41e3a;
+    }
+
+    .tipo-aporte.interpretacion {
+      background: #e8f4f8;
+      color: #0066cc;
+    }
+
+    .tipo-aporte.georeferencia {
+      background: #f0e8f8;
+      color: #6f0099;
+    }
+
+    .tipo-aporte.transcripcion {
+      background: #f8f0e8;
+      color: #cc6600;
+    }
+
+    .confianza-bar {
+      width: 60px;
+      height: 6px;
+      background: #e0e0e0;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .confianza-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 3px;
+    }
+
+    .actions-footer {
+      display: flex;
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid var(--line);
+      margin-top: auto;
+    }
+
+    .actions-footer .btn {
+      flex: 1;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 8px;
+      padding: 32px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 6px;
+      color: #333;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px var(--accent-light);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .modal-actions .btn {
+      flex: 1;
+    }
+
+    .notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: white;
+      padding: 16px 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      z-index: 2000;
+      max-width: 300px;
+      border-left: 4px solid var(--accent);
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      .container {
+        grid-template-columns: 280px 1fr;
+      }
+
+      .section:last-child {
+        grid-row: auto;
+        grid-column: 1 / 3;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        border-right: none;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .section:last-child {
+        grid-column: 1;
+      }
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #d0d0d0;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #999;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🏛️ Pictograma</h1>
+    <div class="header-actions">
+      <button class="btn btn-secondary" onclick="exportData()">📥 Descargar datos</button>
+      <button class="btn btn-primary" onclick="openAddAporteModal()">➕ Nuevo aporte</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Sidebar: Lista de Pictogramas -->
+    <div class="sidebar">
+      <div class="sidebar-header">Pictogramas</div>
+      <div class="search-filters">
+        <input
+          type="text"
+          class="search-input"
+          id="searchPictograma"
+          placeholder="Buscar..."
+          onkeyup="filterPictogramas()"
+        />
+      </div>
+      <div class="pictograma-list" id="pictogramaList"></div>
+    </div>
+
+    <!-- Middle-Left: Image Upload -->
+    <div class="section">
+      <h2 class="section-title">Imagen pictograma</h2>
+      <div class="image-upload-area" id="uploadArea">
+        <div class="upload-icon">☁️</div>
+        <div class="upload-text">No hay imagen cargada</div>
+        <div class="upload-subtext">Sube una imagen del pictograma.</div>
+      </div>
+      <button class="upload-btn" onclick="document.getElementById('imageInput').click()">
+        ⬆️ Subir imagen
+      </button>
+      <input type="file" id="imageInput" accept="image/*" />
+    </div>
+
+    <!-- Middle-Right: Graph Visualization -->
+    <div class="section graph-container">
+      <h2 class="section-title">Pictograma</h2>
+      <div id="cytoscape"></div>
+    </div>
+
+    <!-- Right: Aportes Table -->
+    <div class="section table-section">
+      <h2 class="section-title">Aportes</h2>
+      <div class="search-filters">
+        <input
+          type="text"
+          class="search-input"
+          id="searchAporte"
+          placeholder="Buscar municipio..."
+          onkeyup="filterAportes()"
+        />
+        <select class="filter-select" id="filterTipo" onchange="filterAportes()">
+          <option value="">Todos los tipos</option>
+          <option value="imagen">Imagen</option>
+          <option value="interpretacion">Interpretación</option>
+          <option value="georeferencia">Georeferencia</option>
+          <option value="transcripcion">Transcripción</option>
+        </select>
+      </div>
+      <table class="aportes-table">
+        <thead>
+          <tr>
+            <th>Municipio</th>
+            <th>Tipo</th>
+            <th>Fecha</th>
+            <th>Confianza</th>
+          </tr>
+        </thead>
+        <tbody id="aportesTable"></tbody>
+      </table>
+      <div class="actions-footer">
+        <button class="btn btn-secondary" onclick="exportAportes()">
+          📊 Exportar CSV
+        </button>
+        <button class="btn btn-primary" onclick="openAddAporteModal()">Agregar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para agregar aporte -->
+  <div class="modal" id="addAporteModal">
+    <div class="modal-content">
+      <div class="modal-title">➕ Agregar nuevo aporte</div>
+      <form onsubmit="submitNewAporte(event)">
+        <div class="form-group">
+          <label class="form-label">Pictograma</label>
+          <select class="form-select" id="modalPictograma" required>
+            <option value="">Selecciona un pictograma...</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Municipio</label>
+          <select class="form-select" id="modalMunicipio" required>
+            <option value="">Selecciona un municipio...</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tipo de aporte</label>
+          <select class="form-select" id="modalTipo" required>
+            <option value="">Selecciona tipo...</option>
+            <option value="imagen">Imagen</option>
+            <option value="interpretacion">Interpretación</option>
+            <option value="georeferencia">Georeferencia</option>
+            <option value="transcripcion">Transcripción</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Usuario</label>
+          <input type="text" class="form-input" id="modalUsuario" placeholder="ej: u_123" required />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Confianza (0-1)</label>
+          <input type="number" class="form-input" id="modalConfianza" min="0" max="1" step="0.01" value="0.75" required />
+        </div>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-secondary" onclick="closeAddAporteModal()">
+            Cancelar
+          </button>
+          <button type="submit" class="btn btn-primary">Guardar aporte</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const municipioColors = {
+      Tunja: "#4285F4",
+      Sogamoso: "#34A853",
+      Chiquinquirá: "#FBBC04",
+      Duitama: "#EA4335",
+      Paipa: "#AF69EE",
+      "Villa de Leyva": "#00BCD4",
+      Moniquirá: "#FF6D00",
+      Samacá: "#E91E63",
+      Ráquira: "#9C27B0",
+      Nobsa: "#009688",
+      Tibasosa: "#FFC107",
+      Firavitoba: "#8BC34A",
+      Aquitania: "#F44336",
+      Tota: "#00ACC1",
+      Gámeza: "#FF5722",
+      Tópaga: "#673AB7",
+      Mongua: "#3F51B5",
+      Socha: "#00897B",
+      Jericó: "#C2185B",
+      Belén: "#7B1FA2",
+      Iza: "#607D8B",
+    };
+
+    let pictogramas = [];
+    let interacciones = [];
+    let municipios = [];
+    let currentPictograma = null;
+    let cy = null;
+    let ws = null;
+    let filteredAportes = [];
+
+    function connectWebSocket() {
+      const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+      ws = new WebSocket(`${protocol}//${window.location.host}`);
+
+      ws.onopen = () => {
+        console.log("✓ WebSocket conectado");
+      };
+
+      ws.onmessage = (event) => {
+        try {
+          const message = JSON.parse(event.data);
+
+          if (message.type === "init") {
+            pictogramas = message.pictogramas;
+            interacciones = message.interacciones;
+            municipios = message.municipios;
+            init();
+          } else if (message.type === "new_interaccion") {
+            interacciones.push(message.data);
+            updateAportesTable();
+            updateGraph();
+            showNotification("✨ Nuevo aporte", `${message.data.municipio_nombre} agregó un ${message.data.tipo_aporte}`);
+          }
+        } catch (error) {
+          console.error("Error processing WebSocket message:", error);
+        }
+      };
+
+      ws.onerror = () => {
+        console.error("WebSocket error");
+        setTimeout(connectWebSocket, 3000);
+      };
+
+      ws.onclose = () => {
+        console.log("WebSocket desconectado, reintentando...");
+        setTimeout(connectWebSocket, 3000);
+      };
+    }
+
+    function init() {
+      renderPictogramaList();
+      populateModalSelects();
+      initCytoscape();
+      if (pictogramas.length > 0) {
+        selectPictograma(document.querySelector(".pictograma-item"), pictogramas[0].id);
+      }
+    }
+
+    function renderPictogramaList() {
+      const list = document.getElementById("pictogramaList");
+      list.innerHTML = pictogramas
+        .map(
+          (p, idx) => `
+        <div class="pictograma-item ${idx === 0 ? "active" : ""}" onclick="selectPictograma(this, '${p.id}')">
+          <div class="pictograma-item-title">${p.sitio}</div>
+          <div class="pictograma-item-meta">${p.tipo} • ${p.antiguedad_aprox}a.C.</div>
+        </div>
+      `
+        )
+        .join("");
+    }
+
+    function filterPictogramas() {
+      const search = document
+        .getElementById("searchPictograma")
+        .value.toLowerCase();
+      const items = document.querySelectorAll(".pictograma-item");
+
+      items.forEach((item) => {
+        const title = item.querySelector(".pictograma-item-title").textContent;
+        const tipo = item.querySelector(".pictograma-item-meta").textContent;
+        const visible =
+          title.toLowerCase().includes(search) || tipo.toLowerCase().includes(search);
+        item.style.display = visible ? "block" : "none";
+      });
+    }
+
+    function selectPictograma(element, id) {
+      document
+        .querySelectorAll(".pictograma-item")
+        .forEach((e) => e.classList.remove("active"));
+      element.classList.add("active");
+
+      currentPictograma = pictogramas.find((p) => p.id === id);
+      updateAportesTable();
+      updateGraph();
+    }
+
+    function filterAportes() {
+      if (!currentPictograma) return;
+
+      const search = document.getElementById("searchAporte").value.toLowerCase();
+      const tipo = document.getElementById("filterTipo").value;
+
+      filteredAportes = interacciones.filter((a) => {
+        const matchPictograma = a.pictograma_id === currentPictograma.id;
+        const matchMunicipio = a.municipio_nombre.toLowerCase().includes(search);
+        const matchTipo = !tipo || a.tipo_aporte === tipo;
+        return matchPictograma && matchMunicipio && matchTipo;
+      });
+
+      renderAportesTable();
+    }
+
+    function updateAportesTable() {
+      filterAportes();
+    }
+
+    function renderAportesTable() {
+      const tbody = document.getElementById("aportesTable");
+
+      tbody.innerHTML = filteredAportes
+        .map(
+          (a) => `
+        <tr>
+          <td>
+            <div class="municipio-badge">
+              <div class="badge-color" style="background: ${municipioColors[a.municipio_nombre] || "#ccc"}"></div>
+              ${a.municipio_nombre}
+            </div>
+          </td>
+          <td>
+            <span class="tipo-aporte ${a.tipo_aporte}">${a.tipo_aporte}</span>
+          </td>
+          <td>${new Date(a.fecha).toLocaleDateString("es-ES")}</td>
+          <td>
+            <div class="confianza-bar">
+              <div class="confianza-fill" style="width: ${a.confianza * 100}%"></div>
+            </div>
+          </td>
+        </tr>
+      `
+        )
+        .join("");
+    }
+
+    function initCytoscape() {
+      cy = cytoscape({
+        container: document.getElementById("cytoscape"),
+        elements: [],
+        style: [
+          {
+            selector: "node",
+            style: {
+              content: "data(label)",
+              "text-valign": "center",
+              "text-halign": "center",
+              "font-size": 12,
+              "font-weight": "bold",
+              width: 60,
+              height: 60,
+              "background-color": "data(color)",
+              color: "white",
+              "text-wrap": "wrap",
+              "text-max-width": 55,
+            },
+          },
+          {
+            selector: "edge",
+            style: {
+              "line-color": "#d0d0d0",
+              width: "data(weight)",
+            },
+          },
+        ],
+        layout: {
+          name: "circle",
+        },
+      });
+    }
+
+    function updateGraph() {
+      if (!cy || !currentPictograma) return;
+
+      const aportes = interacciones.filter(
+        (a) => a.pictograma_id === currentPictograma.id
+      );
+      const municipios = [...new Set(aportes.map((a) => a.municipio_nombre))];
+
+      const nodes = [
+        {
+          data: {
+            id: "pictograma",
+            label: currentPictograma.sitio.substring(0, 15),
+            color: "#1d9e75",
+          },
+        },
+        ...municipios.map((m) => ({
+          data: {
+            id: m,
+            label: m,
+            color: municipioColors[m] || "#999",
+          },
+        })),
+      ];
+
+      const edges = aportes.map((a, idx) => ({
+        data: {
+          id: `edge-${idx}`,
+          source: "pictograma",
+          target: a.municipio_nombre,
+          weight: 2,
+        },
+      }));
+
+      cy.elements().remove();
+      cy.add([...nodes, ...edges]);
+
+      cy.layout({
+        name: "circle",
+        avoidOverlap: true,
+      }).run();
+    }
+
+    function populateModalSelects() {
+      const pictSelect = document.getElementById("modalPictograma");
+      pictSelect.innerHTML = `<option value="">Selecciona un pictograma...</option>` +
+        pictogramas.map((p) => `<option value="${p.id}">${p.sitio}</option>`).join("");
+
+      const munSelect = document.getElementById("modalMunicipio");
+      munSelect.innerHTML = `<option value="">Selecciona un municipio...</option>` +
+        municipios.map((m) => `<option value="${m.nombre}">${m.nombre}</option>`).join("");
+    }
+
+    function openAddAporteModal() {
+      document.getElementById("addAporteModal").classList.add("active");
+    }
+
+    function closeAddAporteModal() {
+      document.getElementById("addAporteModal").classList.remove("active");
+      document.getElementById("addAporteModal").querySelector("form").reset();
+    }
+
+    function submitNewAporte(event) {
+      event.preventDefault();
+
+      const newAporte = {
+        municipio_nombre: document.getElementById("modalMunicipio").value,
+        pictograma_id: document.getElementById("modalPictograma").value,
+        tipo_aporte: document.getElementById("modalTipo").value,
+        usuario_id: document.getElementById("modalUsuario").value,
+        confianza: parseFloat(document.getElementById("modalConfianza").value),
+        fecha: new Date().toISOString().split("T")[0],
+      };
+
+      if (ws && ws.readyState === WebSocket.OPEN) {
+        ws.send(
+          JSON.stringify({
+            type: "add_interaccion",
+            data: newAporte,
+          })
+        );
+      } else {
+        fetch("/api/interacciones", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newAporte),
+        });
+      }
+
+      closeAddAporteModal();
+    }
+
+    function showNotification(title, message) {
+      const notification = document.createElement("div");
+      notification.className = "notification";
+      notification.innerHTML = `
+        <strong>${title}</strong>
+        <p style="margin: 6px 0 0 0; color: #666; font-size: 12px;">${message}</p>
+      `;
+      document.body.appendChild(notification);
+
+      setTimeout(() => {
+        notification.style.animation = "slideOut 0.3s ease";
+        setTimeout(() => notification.remove(), 300);
+      }, 3000);
+    }
+
+    function exportAportes() {
+      if (filteredAportes.length === 0) {
+        alert("No hay aportes para exportar");
+        return;
+      }
+
+      const data = filteredAportes.map((a) => ({
+        Pictograma: currentPictograma.sitio,
+        Municipio: a.municipio_nombre,
+        Tipo: a.tipo_aporte,
+        Fecha: a.fecha,
+        Confianza: a.confianza,
+        Usuario: a.usuario_id,
+      }));
+
+      const csv =
+        [Object.keys(data[0]).join(","), ...data.map((r) => Object.values(r).join(","))].join(
+          "\n"
+        );
+      downloadFile(csv, `aportes_${currentPictograma.id}.csv`, "text/csv");
+    }
+
+    function exportData() {
+      const data = {
+        pictogramas,
+        interacciones,
+        municipios,
+        exportDate: new Date().toISOString(),
+      };
+      downloadFile(
+        JSON.stringify(data, null, 2),
+        "rupestre_ai_data.json",
+        "application/json"
+      );
+    }
+
+    function downloadFile(content, filename, type) {
+      const blob = new Blob([content], { type });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
+    document.getElementById("imageInput").addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const uploadArea = document.getElementById("uploadArea");
+          uploadArea.innerHTML = `<img src="${event.target.result}" />`;
+          uploadArea.classList.add("has-image");
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    document.getElementById("addAporteModal").addEventListener("click", (e) => {
+      if (e.target.id === "addAporteModal") {
+        closeAddAporteModal();
+      }
+    });
+
+    connectWebSocket();
+  </script>
+</body>
+</html>

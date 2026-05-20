@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pictograma — Rupestre AI</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: { extend: { fontFamily: { sans: ['Inter','ui-sans-serif','system-ui'] } } }
+    }
+  </script>
+  <style>
+    *, *::before, *::after { font-family: 'Inter', sans-serif; box-sizing: border-box; }
+
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 99px; }
+    ::-webkit-scrollbar-thumb:hover { background: #cbd5e1; }
+
+    #cy { width:100%; height:100%; background:#f8fafc; }
+
+    .drop-zone { transition: border-color .2s, background-color .2s; }
+    .drop-zone.drag-active { border-color: #6366f1 !important; background: #eef2ff; }
+
+    .tab-btn { border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; }
+    .tab-btn.active { border-color: #0f172a; color: #0f172a !important; }
+
+    .action-btn { transition: transform .12s, box-shadow .12s; }
+    .action-btn:hover:not(:disabled) { transform: translateY(-1px); }
+    .action-btn:active { transform: translateY(0); }
+
+    @keyframes slideInRight {
+      from { transform: translateX(20px); opacity: 0; }
+      to   { transform: translateX(0);    opacity: 1; }
+    }
+    @keyframes fadeOutDown {
+      to { opacity: 0; transform: translateY(4px); }
+    }
+    .toast-in  { animation: slideInRight .25s ease; }
+    .toast-out { animation: fadeOutDown .25s ease forwards; }
+
+    @keyframes shimmer {
+      0%   { background-position: -400px 0; }
+      100% { background-position:  400px 0; }
+    }
+    .skeleton {
+      background: linear-gradient(90deg, #f1f5f9 25%, #e9eef5 50%, #f1f5f9 75%);
+      background-size: 400px 100%;
+      animation: shimmer 1.4s infinite;
+    }
+
+    .matrix-cell { transition: transform .1s; cursor: pointer; }
+    .matrix-cell:hover { transform: scale(1.3); position: relative; z-index: 10; }
+
+    #node-tooltip { pointer-events: none; }
+
+    input[type=range] { accent-color: #6366f1; cursor: pointer; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 overflow-hidden" style="height:100dvh;display:flex;flex-direction:column;">
+
+<!-- ════════════════════  HEADER  ════════════════════ -->
+<header class="flex-none h-14 bg-white border-b border-slate-200 flex items-center px-5 gap-3 z-50 shadow-sm">
+
+  <button onclick="toggleSidebar()" title="Toggle panel"
+          class="p-2 rounded-xl hover:bg-slate-100 text-slate-500 transition-colors">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+
+  <div class="flex items-center gap-2.5">
+    <div class="w-7 h-7 rounded-lg bg-slate-900 flex items-center justify-center shadow-sm">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+      </svg>
+    </div>
+    <span class="font-semibold text-slate-900 tracking-tight text-sm">Pictograma</span>
+    <span class="text-slate-300 select-none">·</span>
+    <span class="text-slate-400 text-xs font-normal">Rupestre AI</span>
+  </div>
+
+  <div class="flex-1"></div>
+
+  <!-- Connection badge -->
+  <div class="flex items-center gap-1.5 text-xs select-none">
+    <div id="status-dot" class="w-2 h-2 rounded-full bg-slate-300 transition-colors duration-300"></div>
+    <span id="status-label" class="text-slate-400">Offline</span>
+  </div>
+
+  <div class="w-px h-5 bg-slate-200 mx-2"></div>
+
+  <button class="p-2 rounded-xl hover:bg-slate-100 text-slate-400 transition-colors" title="Ajustes">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14M19.07 4.93A10 10 0 004.93 4.93"/>
+    </svg>
+  </button>
+
+  <div class="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-400 to-violet-600 flex items-center justify-center text-white text-[10px] font-semibold cursor-pointer select-none" title="Perfil">RA</div>
+</header>
+
+<!-- ════════════════════  MAIN  ════════════════════ -->
+<div class="flex flex-1 overflow-hidden">
+
+  <!-- ──────  LEFT PANEL  ────── -->
+  <aside id="left-panel"
+         class="flex-none bg-white border-r border-slate-200 flex flex-col overflow-hidden"
+         style="width:380px;transition:width .2s ease;">
+
+    <!-- Tabs header -->
+    <div class="flex-none flex border-b border-slate-200 px-2 pt-1 gap-0.5">
+      <button id="tab-btn-upload"  onclick="switchTab('upload')"  class="tab-btn active   text-xs font-medium text-slate-500 px-4 py-2.5">Imagen</button>
+      <button id="tab-btn-aportes" onclick="switchTab('aportes')" class="tab-btn text-xs font-medium text-slate-500 px-4 py-2.5">Aportes</button>
+      <button id="tab-btn-matrix"  onclick="switchTab('matrix')"  class="tab-btn text-xs font-medium text-slate-500 px-4 py-2.5">Matriz</button>
+    </div>
+
+    <!-- Scrollable body -->
+    <div class="flex-1 overflow-y-auto">
+
+      <!-- ┄ TAB: IMAGEN ┄ -->
+      <div id="tab-upload" class="p-4 space-y-4">
+
+        <!-- Drop zone -->
+        <div id="drop-zone"
+             class="drop-zone border-2 border-dashed border-slate-200 rounded-2xl p-7 text-center cursor-pointer hover:border-slate-300 hover:bg-slate-50 transition-all"
+             onclick="document.getElementById('file-input').click()"
+             ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
+          <div id="dz-placeholder">
+            <div class="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center mx-auto mb-3">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5">
+                <rect x="3" y="3" width="18" height="18" rx="3"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+            </div>
+            <p class="text-sm font-medium text-slate-600">Arrastra el pictograma aquí</p>
+            <p class="text-xs text-slate-400 mt-1">PNG · JPG · WEBP · hasta 10 MB</p>
+          </div>
+          <img id="img-preview" class="hidden max-h-44 mx-auto rounded-xl object-contain shadow-sm" alt="preview">
+        </div>
+        <input id="file-input" type="file" accept="image/*" class="hidden" onchange="onFileSelect(event)">
+
+        <!-- File chip -->
+        <div id="file-info" class="hidden items-center gap-2 px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#64748b" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="3"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+          <span id="file-name" class="text-xs text-slate-600 flex-1 truncate"></span>
+          <button onclick="clearImage()" class="text-slate-300 hover:text-slate-500 transition-colors">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Metadata form -->
+        <div class="space-y-3">
+          <div>
+            <label class="block text-xs font-medium text-slate-700 mb-1.5">Nombre del sitio</label>
+            <input id="site-name" type="text" placeholder="Ej: Cerro de Monserrate..."
+                   class="w-full text-sm px-3 py-2.5 border border-slate-200 rounded-xl bg-white
+                          focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-300
+                          placeholder-slate-300 transition">
+          </div>
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1.5">Tipo</label>
+              <select id="p-tipo" class="w-full text-sm px-3 py-2.5 border border-slate-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-200 transition">
+                <option>geométrico</option><option>antropomorfo</option><option>zoomorfo</option><option>solar</option><option>abstracto</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1.5">Estado</label>
+              <select id="p-estado" class="w-full text-sm px-3 py-2.5 border border-slate-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-200 transition">
+                <option>bueno</option><option>regular</option><option>deteriorado</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <button onclick="uploadImage()"
+                class="action-btn w-full bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium py-2.5 rounded-xl flex items-center justify-center gap-2 shadow-sm transition-colors">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/>
+          </svg>
+          Subir imagen
+        </button>
+      </div>
+
+      <!-- ┄ TAB: APORTES ┄ -->
+      <div id="tab-aportes" class="hidden p-4 space-y-4">
+
+        <!-- New aporte card -->
+        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-3">
+          <div class="flex items-center gap-2 mb-0.5">
+            <div class="w-1 h-4 rounded-full bg-indigo-500"></div>
+            <span class="text-xs font-semibold text-slate-800 uppercase tracking-wider">Nuevo aporte</span>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">Municipio</label>
+            <select id="new-municipio" class="w-full text-sm px-3 py-2.5 border border-slate-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-200 transition">
+              <option value="">Seleccionar municipio...</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-slate-600 mb-1.5">Pictograma</label>
+            <select id="new-pictograma" class="w-full text-sm px-3 py-2.5 border border-slate-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-200 transition">
+              <option value="">Seleccionar pictograma...</option>
+            </select>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div>
+              <label class="block text-xs font-medium text-slate-600 mb-1.5">Tipo de aporte</label>
+              <select id="new-tipo" class="w-full text-sm px-3 py-2.5 border border-slate-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-200 transition">
+                <option value="imagen">imagen</option>
+                <option value="interpretacion">interpretación</option>
+                <option value="georeferencia">georeferencia</option>
+                <option value="transcripcion">transcripción</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-600 mb-1.5">Confianza</label>
+              <input id="new-confianza" type="number" value="0.8" min="0.1" max="1.0" step="0.05"
+                     class="w-full text-sm px-3 py-2.5 border border-slate-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-200 transition">
+            </div>
+          </div>
+
+          <button onclick="addAporte()"
+                  class="action-btn w-full bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium py-2.5 rounded-xl flex items-center justify-center gap-2 transition-colors shadow-sm">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+            Agregar aporte
+          </button>
+        </div>
+
+        <!-- Recent aportes -->
+        <div>
+          <div class="flex items-center justify-between mb-2.5">
+            <span class="text-xs font-semibold text-slate-800 uppercase tracking-wider">Recientes</span>
+            <span id="aporte-count" class="text-xs text-slate-400">—</span>
+          </div>
+          <div id="aportes-list" class="space-y-1.5">
+            <div class="skeleton h-11 rounded-xl"></div>
+            <div class="skeleton h-11 rounded-xl"></div>
+            <div class="skeleton h-11 rounded-xl"></div>
+          </div>
+        </div>
+
+        <!-- Quick actions -->
+        <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100">
+          <button onclick="saveAportes()"
+                  class="action-btn flex items-center justify-center gap-1.5 px-3 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-medium rounded-xl border border-emerald-200 transition-all">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/>
+              <polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
+            </svg>
+            Guardar
+          </button>
+          <button onclick="refreshGraph()"
+                  class="action-btn flex items-center justify-center gap-1.5 px-3 py-2 bg-sky-50 hover:bg-sky-100 text-sky-700 text-xs font-medium rounded-xl border border-sky-200 transition-all">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="23 4 23 10 17 10"/>
+              <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
+            </svg>
+            Actualizar grafo
+          </button>
+        </div>
+      </div>
+
+      <!-- ┄ TAB: MATRIZ ┄ -->
+      <div id="tab-matrix" class="hidden p-4">
+        <div class="flex items-center justify-between mb-3">
+          <div class="flex items-center gap-2">
+            <div class="w-1 h-4 rounded-full bg-violet-500"></div>
+            <span class="text-xs font-semibold text-slate-800 uppercase tracking-wider">Matriz de colaboración</span>
+          </div>
+          <button onclick="clearConnections()" class="text-xs text-red-400 hover:text-red-600 transition-colors flex items-center gap-1">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="3 6 5 6 21 6"/>
+              <path d="M19 6l-1 14H6L5 6"/>
+            </svg>
+            Limpiar
+          </button>
+        </div>
+        <p class="text-xs text-slate-400 mb-4">Pictogramas compartidos entre municipios</p>
+        <div id="matrix-wrap">
+          <div class="skeleton h-52 rounded-2xl"></div>
+        </div>
+      </div>
+
+    </div><!-- end scrollable -->
+  </aside>
+
+  <!-- ──────  RIGHT PANEL: GRAPH  ────── -->
+  <section class="flex-1 flex flex-col overflow-hidden min-w-0">
+
+    <!-- Controls bar -->
+    <div class="flex-none h-12 bg-white border-b border-slate-200 flex items-center px-4 gap-2">
+
+      <!-- Live counts -->
+      <div class="flex items-center gap-1.5 text-xs text-slate-500 flex-none">
+        <div class="w-1.5 h-1.5 rounded-full bg-emerald-400"></div>
+        <span id="cnt-nodes">— nodos</span>
+        <span class="text-slate-300">·</span>
+        <span id="cnt-edges">— conexiones</span>
+      </div>
+
+      <div class="w-px h-5 bg-slate-200 mx-1 flex-none"></div>
+
+      <!-- Layout buttons -->
+      <button onclick="applyLayout('fcose')"
+              class="action-btn px-2.5 py-1.5 text-xs text-slate-600 hover:bg-slate-100 rounded-lg transition-colors flex items-center gap-1.5">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="4" r="2"/><circle cx="4" cy="20" r="2"/><circle cx="20" cy="20" r="2"/>
+          <line x1="12" y1="6" x2="5" y2="18"/><line x1="12" y1="6" x2="19" y2="18"/>
+        </svg>Force
+      </button>
+      <button onclick="applyLayout('circle')"
+              class="action-btn px-2.5 py-1.5 text-xs text-slate-600 hover:bg-slate-100 rounded-lg transition-colors flex items-center gap-1.5">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>Circular
+      </button>
+      <button onclick="applyLayout('breadthfirst')"
+              class="action-btn px-2.5 py-1.5 text-xs text-slate-600 hover:bg-slate-100 rounded-lg transition-colors flex items-center gap-1.5">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="12" y1="2" x2="12" y2="22"/>
+          <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+        </svg>Árbol
+      </button>
+
+      <div class="w-px h-5 bg-slate-200 mx-1 flex-none"></div>
+
+      <!-- Threshold slider -->
+      <div class="flex items-center gap-2 flex-none">
+        <label class="text-xs text-slate-500">Umbral:</label>
+        <input type="range" id="edge-threshold" min="1" max="8" value="2" class="w-20" oninput="onThreshold(this.value)">
+        <span id="threshold-label" class="text-xs text-slate-500 w-4">2</span>
+      </div>
+
+      <div class="flex-1 min-w-0"></div>
+
+      <!-- Zoom controls -->
+      <div class="flex items-center gap-0.5 flex-none">
+        <button onclick="cy.zoom(cy.zoom()*1.3);cy.center()" title="Acercar"
+                class="p-2 rounded-xl hover:bg-slate-100 text-slate-500 transition-colors">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            <line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/>
+          </svg>
+        </button>
+        <button onclick="cy.zoom(cy.zoom()*.75);cy.center()" title="Alejar"
+                class="p-2 rounded-xl hover:bg-slate-100 text-slate-500 transition-colors">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            <line x1="8" y1="11" x2="14" y2="11"/>
+          </svg>
+        </button>
+        <button onclick="cy.fit(cy.elements(),40)" title="Ajustar vista"
+                class="p-2 rounded-xl hover:bg-slate-100 text-slate-500 transition-colors">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8 3H5a2 2 0 00-2 2v3m18 0V5a2 2 0 00-2-2h-3m0 18h3a2 2 0 002-2v-3M3 16v3a2 2 0 002 2h3"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Graph canvas -->
+    <div class="relative flex-1">
+      <div id="cy" class="absolute inset-0"></div>
+
+      <!-- Hover tooltip -->
+      <div id="node-tooltip"
+           class="hidden absolute z-30 bg-white border border-slate-200 rounded-2xl shadow-xl p-3.5 text-xs min-w-[170px]">
+        <div id="tt-name" class="font-semibold text-slate-900 mb-2.5 text-[13px]"></div>
+        <div class="space-y-1.5 text-slate-500">
+          <div class="flex justify-between gap-8">
+            <span>PageRank</span>
+            <span id="tt-pr" class="font-semibold text-slate-800"></span>
+          </div>
+          <div class="flex justify-between gap-8">
+            <span>Grado</span>
+            <span id="tt-deg" class="font-semibold text-slate-800"></span>
+          </div>
+          <div class="flex justify-between gap-8">
+            <span>Población</span>
+            <span id="tt-pop" class="font-semibold text-slate-800"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Loading overlay -->
+      <div id="graph-overlay"
+           class="absolute inset-0 bg-slate-50 flex flex-col items-center justify-center z-20"
+           style="transition:opacity .4s;">
+        <div class="w-9 h-9 border-[2.5px] border-slate-200 border-t-indigo-500 rounded-full animate-spin mb-3"></div>
+        <p class="text-sm text-slate-500">Cargando grafo...</p>
+      </div>
+    </div>
+
+    <!-- Stats bar -->
+    <div class="flex-none h-9 bg-white border-t border-slate-200 flex items-center px-5 gap-5 text-xs text-slate-400">
+      <span id="stat-density">Densidad: —</span>
+      <span class="text-slate-200">·</span>
+      <span id="stat-avgdeg">Grado medio: —</span>
+      <span class="text-slate-200">·</span>
+      <span id="stat-top">Top nodo: —</span>
+      <div class="flex-1"></div>
+      <span id="stat-updated">—</span>
+    </div>
+
+  </section>
+</div>
+
+<!-- ════════════════════  NODE DRAWER  ════════════════════ -->
+<div id="node-drawer"
+     class="hidden fixed right-0 z-40 bg-white border-l border-slate-200 shadow-2xl flex flex-col"
+     style="top:56px;bottom:0;width:280px;">
+  <div class="flex items-center justify-between px-4 py-3.5 border-b border-slate-200 flex-none">
+    <div class="flex items-center gap-2.5">
+      <div id="nd-dot" class="w-3 h-3 rounded-full flex-none"></div>
+      <span id="nd-title" class="font-semibold text-sm text-slate-900"></span>
+    </div>
+    <button onclick="closeDrawer()" class="p-1.5 rounded-xl hover:bg-slate-100 text-slate-400 transition-colors">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <div id="nd-body" class="flex-1 overflow-y-auto p-4"></div>
+</div>
+
+<!-- ════════════════════  TOAST CONTAINER  ════════════════════ -->
+<div id="toasts" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+<!-- ════════════════════  SCRIPTS  ════════════════════ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/cytoscape-fcose@2.2.0/cytoscape-fcose.js"></script>
+<script>
+// Register fcose if it loaded
+(function(){ try { if(typeof cytoscapeFcose!=='undefined') cytoscape.use(cytoscapeFcose); } catch(e){} })();
+
+// ────────────────────────────────────────────────────────────────
+// STATE
+// ────────────────────────────────────────────────────────────────
+const APP = {
+  cy: null, socket: null,
+  municipios: [], pictogramas: [], aportes: [],
+  uploadedFile: null, threshold: 2, activeTab: 'upload',
+};
+window.cy = null; // exposed for inline button handlers
+
+// ────────────────────────────────────────────────────────────────
+// BOOT
+// ────────────────────────────────────────────────────────────────
+async function boot() {
+  initCytoscape();
+  initSocket();          // non-blocking — fails silently when server is absent
+  await loadAll();
+  populateSelects();
+  switchTab('upload');
+}
+
+// ────────────────────────────────────────────────────────────────
+// CYTOSCAPE
+// ────────────────────────────────────────────────────────────────
+function initCytoscape() {
+  APP.cy = cytoscape({
+    container: document.getElementById('cy'),
+    style: buildStyle(),
+    wheelSensitivity: 0.3,
+    minZoom: 0.05, maxZoom: 6,
+    boxSelectionEnabled: false,
+  });
+  window.cy = APP.cy;
+
+  APP.cy.on('tap',       'node', e => openDrawer(e.target.data()));
+  APP.cy.on('tap',              e => { if (e.target === APP.cy) closeDrawer(); });
+  APP.cy.on('mouseover', 'node', e => showTip(e.originalEvent, e.target.data()));
+  APP.cy.on('mouseout',  'node', ()  => hideTip());
+  APP.cy.on('viewport',         ()  => hideTip());
+}
+
+function buildStyle() {
+  return [
+    { selector:'node', style:{
+        'background-color':    'data(color)',
+        'width':               'data(sz)', 'height': 'data(sz)',
+        'label':               'data(label)',
+        'font-size':           '11px', 'font-family': 'Inter, sans-serif', 'font-weight': '500',
+        'text-valign':         'bottom', 'text-halign': 'center', 'text-margin-y': '5px',
+        'color':               '#1e293b',
+        'text-outline-color':  '#f8fafc', 'text-outline-width': '2.5px',
+        'border-width':        '2px', 'border-color': 'rgba(255,255,255,0.75)',
+        'shadow-blur':         '10px', 'shadow-color': 'rgba(0,0,0,0.10)',
+        'shadow-offset-x':     '0', 'shadow-offset-y': '2px',
+        'transition-property': 'border-color,width,height', 'transition-duration': '180ms',
+      }
+    },
+    { selector:'node:selected,node.hl', style:{ 'border-width':'3px', 'border-color':'#6366f1' } },
+    { selector:'node.dim', style:{ 'opacity': 0.16 } },
+    { selector:'edge', style:{
+        'width':               'data(w)',
+        'line-color':          '#cbd5e1',
+        'opacity':             0.55,
+        'curve-style':         'bezier',
+        'transition-property': 'line-color,opacity,width', 'transition-duration': '200ms',
+      }
+    },
+    { selector:'edge.hl',  style:{ 'line-color':'#6366f1', 'opacity':0.9 } },
+    { selector:'edge.new', style:{ 'line-color':'#22c55e', 'opacity':1, 'width':3 } },
+    { selector:'edge.dim', style:{ 'opacity':0.04 } },
+  ];
+}
+
+// ────────────────────────────────────────────────────────────────
+// SOCKET.IO (non-blocking)
+// ────────────────────────────────────────────────────────────────
+function initSocket() {
+  const s = document.createElement('script');
+  s.src = '/socket.io/socket.io.js';
+  s.onload = () => {
+    try {
+      APP.socket = io({ timeout:2500, reconnectionAttempts:4 });
+      APP.socket.on('connect',            ()   => setStatus(true));
+      APP.socket.on('disconnect',         ()   => setStatus(false));
+      APP.socket.on('init',              data  => {
+        if (data.nodes?.length) renderGraph(
+          toNodes(data.nodes), dedupe(toEdges(data.edges || []))
+        );
+      });
+      APP.socket.on('connection_created', data => onNewConn(data));
+    } catch(e){}
+  };
+  s.onerror = ()=>{};
+  document.head.appendChild(s);
+}
+
+function setStatus(on) {
+  document.getElementById('status-dot').className =
+    `w-2 h-2 rounded-full transition-colors duration-300 ${on?'bg-emerald-400':'bg-slate-300'}`;
+  document.getElementById('status-label').textContent = on ? 'Online' : 'Offline';
+  document.getElementById('status-label').className   = `text-xs ${on?'text-emerald-600':'text-slate-400'}`;
+}
+
+// ────────────────────────────────────────────────────────────────
+// DATA LOADING
+// ────────────────────────────────────────────────────────────────
+async function loadAll() {
+  const [mR, pR, aR, gR] = await Promise.allSettled([
+    getJSON('/api/municipios'),
+    getJSON('/api/pictogramas'),
+    getJSON('/api/aportes'),
+    getJSON('/api/graph'),
+  ]);
+
+  APP.municipios  = ok(mR) ? mR.value : FALLBACK_MUN;
+  APP.pictogramas = ok(pR) ? pR.value : FALLBACK_PIC;
+  APP.aportes     = ok(aR) ? aR.value : [];
+
+  // Accept either [{nombre}] or ["string"]
+  if (typeof APP.municipios[0] === 'string')
+    APP.municipios = APP.municipios.map(n => ({ nombre: n }));
+
+  if (ok(gR) && gR.value) {
+    const d = gR.value;
+    renderGraph(toNodes(d.nodes||[]), dedupe(toEdges(d.edges||[])));
+  } else {
+    // Fallback: try static graph_data.json served by the express static middleware
+    const gd = await getJSON('/graph_data.json');
+    if (gd) {
+      renderGraph(toNodes(gd.nodes||[]), dedupe(toEdges(gd.edges||[])));
+    } else {
+      renderGraph(FALLBACK_MUN.map((m,i)=>fallbackNode(m.nombre,i)), []);
+    }
+  }
+
+  renderAportesList();
+}
+
+const ok  = r => r.status === 'fulfilled' && r.value != null;
+async function getJSON(url) {
+  try { const r = await fetch(url); return r.ok ? r.json() : null; } catch { return null; }
+}
+
+// ────────────────────────────────────────────────────────────────
+// FORMAT CONVERSION  (Graphology ↔ Cytoscape ↔ WS)
+// ────────────────────────────────────────────────────────────────
+function toNodes(arr) {
+  return arr.map(n => {
+    const isGr = n.key !== undefined && n.data === undefined;
+    const a    = isGr ? (n.attributes || {}) : (n.data || n);
+    const id   = isGr ? n.key  : (a.id || a.key);
+    if (!id) return null;
+    const pr   = +(a.pagerank  || 0);
+    const sz   = Math.max(22, Math.min(60, 22 + pr * 480));
+    return {
+      data: {
+        id, label: a.label || id,
+        pagerank:    pr,
+        betweenness: +(a.betweenness || 0),
+        degree:      +(a.grado || a.degree || 0),
+        population:  +(a.poblacion || a.population || 0),
+        color:       a.color || nodeColor(pr),
+        sz, w: sz, h: sz,
+      },
+      position: (a.x != null) ? { x: +a.x, y: +a.y } : undefined,
+    };
+  }).filter(Boolean);
+}
+
+function toEdges(arr) {
+  return arr.map((e, i) => {
+    const isGr = e.source !== undefined && e.data === undefined;
+    const src  = isGr ? e.source        : (e.data?.source || e.source);
+    const tgt  = isGr ? e.target        : (e.data?.target || e.target);
+    const wt   = isGr
+      ? +(e.attributes?.weight || e.attributes?.peso || 1)
+      : +(e.data?.peso || e.data?.weight || e.peso || 1);
+    if (!src || !tgt) return null;
+    return { data:{ id:`e_raw_${i}`, source:src, target:tgt, weight:wt, w:Math.max(1,Math.min(5,wt)) } };
+  }).filter(Boolean);
+}
+
+function dedupe(edges) {
+  const best = new Map();
+  edges.forEach(e => {
+    const k = [e.data.source, e.data.target].sort().join('||');
+    const c = best.get(k);
+    if (!c || e.data.weight > c.data.weight)
+      best.set(k, { ...e, data:{ ...e.data, id:`e_${k}` } });
+  });
+  return [...best.values()];
+}
+
+// Keep at most maxPerNode strongest edges per node to avoid visual saturation.
+function pruneEdges(edges, maxPerNode = 6) {
+  if (!edges.length) return edges;
+  const nodeRank = new Map(); // node → sorted edge list
+  edges.forEach(e => {
+    const { source, target, weight = 1 } = e.data;
+    [source, target].forEach(n => {
+      if (!nodeRank.has(n)) nodeRank.set(n, []);
+      nodeRank.get(n).push({ id: e.data.id, weight });
+    });
+  });
+  const allowed = new Set();
+  nodeRank.forEach(list => {
+    list.sort((a, b) => b.weight - a.weight)
+        .slice(0, maxPerNode)
+        .forEach(({ id }) => allowed.add(id));
+  });
+  return edges.filter(e => allowed.has(e.data.id));
+}
+
+function nodeColor(pr) {
+  const t = Math.min(1, pr * 16);
+  const r = Math.round(203 - t * 165);
+  const g = Math.round(213 - t * 144);
+  const b = Math.round(225 - t * 120);
+  return `rgb(${r},${g},${b})`;
+}
+
+function fallbackNode(name, i) {
+  const a = (i / 20) * 2 * Math.PI;
+  return { data:{ id:name, label:name, pagerank:0.05, degree:3, population:50000, color:'#94a3b8', sz:28 },
+           position:{ x: 400 + 220*Math.cos(a), y: 300 + 220*Math.sin(a) } };
+}
+
+// ────────────────────────────────────────────────────────────────
+// RENDER
+// ────────────────────────────────────────────────────────────────
+function renderGraph(nodes, edges) {
+  const cy = APP.cy;
+  const pruned = pruneEdges(edges);          // cap connections per node
+  cy.batch(() => {
+    cy.elements().remove();
+    cy.add(nodes);
+    cy.add(pruned.filter(e => (e.data.weight||1) >= APP.threshold));
+  });
+  hideOverlay();
+  applyLayout('fcose');
+  updateStats();
+  updateCounts();
+  document.getElementById('stat-updated').textContent = new Date().toLocaleTimeString('es-CO');
+}
+
+function hideOverlay() {
+  const ov = document.getElementById('graph-overlay');
+  if (!ov) return;
+  ov.style.opacity = '0';
+  setTimeout(() => ov.remove(), 450);
+}
+
+// ────────────────────────────────────────────────────────────────
+// LAYOUT
+// ────────────────────────────────────────────────────────────────
+function applyLayout(name) {
+  const cy = APP.cy;
+  if (!cy || !cy.nodes().length) return;
+
+  // Detect if fcose was actually registered
+  const hasFcose = cy.layoutUtilities || (function(){
+    try { return !!cytoscape.prototype._layouts['fcose']; } catch(e){ return false; }
+  })();
+
+  const n = (name === 'fcose' && !hasFcose) ? 'cose' : name;
+
+  const cfgs = {
+    fcose: {
+      name:'fcose', quality:'default', randomize:false,
+      animate:true, animationDuration:750, animationEasing:'ease-out',
+      fit:true, padding:55, nodeDimensionsIncludeLabels:true,
+      nodeRepulsion:9500, idealEdgeLength:115, edgeElasticity:0.45,
+      gravity:0.28, numIter:2500, tile:true,
+    },
+    cose: {
+      name:'cose', animate:true, animationDuration:700,
+      fit:true, padding:55, nodeRepulsion:460000,
+      edgeElasticity:100, idealEdgeLength:100, gravity:80, numIter:1000,
+    },
+    circle: {
+      name:'circle', animate:true, animationDuration:600,
+      fit:true, padding:55, startAngle: Math.PI * 1.5, avoidOverlap:true,
+    },
+    breadthfirst: {
+      name:'breadthfirst', animate:true, animationDuration:600,
+      fit:true, padding:55, directed:false, avoidOverlap:true,
+    },
+  };
+
+  cy.layout(cfgs[n] || cfgs.cose).run();
+}
+
+// ────────────────────────────────────────────────────────────────
+// REAL-TIME: NEW CONNECTION
+// ────────────────────────────────────────────────────────────────
+function onNewConn(data) {
+  const cy = APP.cy;
+  const { source, target, peso = 1 } = data;
+  if (!cy.getElementById(source).length || !cy.getElementById(target).length) return;
+
+  const k  = [source, target].sort().join('||');
+  const ex = cy.edges().filter(e => [e.data('source'),e.data('target')].sort().join('||') === k);
+
+  if (ex.length) {
+    ex.first().data({ weight: peso, w: Math.max(1,Math.min(5,peso)) });
+    ex.first().addClass('hl');
+    setTimeout(() => ex.first().removeClass('hl'), 2200);
+  } else {
+    const el = cy.add({ data:{ id:`e_${k}_${Date.now()}`, source, target, weight:peso, w:Math.max(1,Math.min(5,peso)) } });
+    el.addClass('new');
+    setTimeout(() => el.removeClass('new'), 2500);
+    applyLayout('fcose');
+  }
+
+  updateStats(); updateCounts();
+  toast(`Conexión: ${source} ↔ ${target}`, 'success');
+}
+
+// ────────────────────────────────────────────────────────────────
+// ACTIONS
+// ────────────────────────────────────────────────────────────────
+async function addAporte() {
+  const municipio = document.getElementById('new-municipio').value;
+  const picId     = document.getElementById('new-pictograma').value;
+  const tipo      = document.getElementById('new-tipo').value;
+  const confianza = parseFloat(document.getElementById('new-confianza').value) || 0.8;
+
+  if (!municipio || !picId) { toast('Selecciona municipio y pictograma', 'error'); return; }
+
+  const ap = {
+    municipio_nombre: municipio,
+    pictograma_id:    picId,
+    tipo_aporte:      tipo,
+    confianza,
+    fecha:            new Date().toISOString().split('T')[0],
+    usuario_id:       'u_' + Math.random().toString(36).slice(2,7),
+  };
+
+  try {
+    const r = await fetch('/api/aportes', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(ap),
+    });
+    if (r.ok) {
+      const res = await r.json();
+      APP.aportes.unshift(ap);
+      renderAportesList();
+      (res.connections||[]).forEach(onNewConn);
+      toast('Aporte registrado', 'success');
+    } else throw new Error();
+  } catch {
+    APP.aportes.unshift(ap);
+    renderAportesList();
+    updateGraphLocal(ap);
+    toast('Aporte guardado (modo local)', 'info');
+  }
+
+  if (APP.socket?.connected)
+    APP.socket.emit('new_event', { type:tipo, municipio_a:municipio, pictograma:picId, timestamp: new Date().toISOString() });
+
+  document.getElementById('new-municipio').value  = '';
+  document.getElementById('new-pictograma').value = '';
+}
+
+function updateGraphLocal(ap) {
+  const siblings = APP.aportes.filter(a =>
+    a.pictograma_id === ap.pictograma_id && a.municipio_nombre !== ap.municipio_nombre
+  );
+  const seen = new Set();
+  siblings.forEach(s => {
+    if (seen.has(s.municipio_nombre)) return;
+    seen.add(s.municipio_nombre);
+    onNewConn({ source: ap.municipio_nombre, target: s.municipio_nombre, peso: 1 });
+  });
+}
+
+async function saveAportes() {
+  try {
+    const r = await fetch('/api/aportes/save', { method:'POST' });
+    toast(r.ok ? 'Aportes guardados' : 'Guardado localmente', r.ok ? 'success' : 'info');
+  } catch { toast('Guardado en memoria', 'info'); }
+}
+
+async function refreshGraph() {
+  toast('Actualizando grafo...', 'info');
+  const d = await getJSON('/api/graph');
+  if (d) {
+    renderGraph(toNodes(d.nodes||[]), dedupe(toEdges(d.edges||[])));
+    toast('Grafo actualizado', 'success');
+  } else {
+    applyLayout('fcose');
+    toast('Layout recalculado', 'success');
+  }
+}
+
+function clearConnections() {
+  if (!confirm('¿Eliminar todas las conexiones del grafo?')) return;
+  APP.cy.edges().remove();
+  if (APP.socket?.connected) APP.socket.emit('clear_graph', {});
+  updateStats(); updateCounts();
+  toast('Conexiones eliminadas', 'success');
+}
+
+async function uploadImage() {
+  if (!APP.uploadedFile) { toast('Selecciona una imagen primero', 'error'); return; }
+  const reader = new FileReader();
+  reader.onload = async ev => {
+    try {
+      const r = await fetch('/api/upload', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          image_base64: ev.target.result,
+          filename:     APP.uploadedFile.name,
+          sitio:        document.getElementById('site-name').value,
+          tipo:         document.getElementById('p-tipo').value,
+          estado:       document.getElementById('p-estado').value,
+        }),
+      });
+      toast(r.ok ? 'Imagen subida correctamente' : 'Imagen guardada localmente', 'success');
+    } catch { toast('Imagen guardada localmente', 'info'); }
+  };
+  reader.readAsDataURL(APP.uploadedFile);
+}
+
+// ────────────────────────────────────────────────────────────────
+// THRESHOLD FILTER
+// ────────────────────────────────────────────────────────────────
+function onThreshold(val) {
+  APP.threshold = +val;
+  document.getElementById('threshold-label').textContent = val;
+  APP.cy.edges().forEach(e => (e.data('weight')||1) >= APP.threshold ? e.show() : e.hide());
+  updateCounts();
+}
+
+// ────────────────────────────────────────────────────────────────
+// SELECTS & LIST
+// ────────────────────────────────────────────────────────────────
+function populateSelects() {
+  const ms = document.getElementById('new-municipio');
+  APP.municipios.forEach(m => {
+    const n = m.nombre||m;
+    ms.insertAdjacentHTML('beforeend', `<option value="${n}">${n}</option>`);
+  });
+
+  const ps = document.getElementById('new-pictograma');
+  APP.pictogramas.forEach(p => {
+    const label = `${p.id} — ${(p.sitio||'').split(' ').slice(0,3).join(' ')}`;
+    ps.insertAdjacentHTML('beforeend', `<option value="${p.id}">${label}</option>`);
+  });
+}
+
+const TC = { imagen:'bg-sky-100 text-sky-700', interpretacion:'bg-violet-100 text-violet-700',
+             georeferencia:'bg-emerald-100 text-emerald-700', transcripcion:'bg-amber-100 text-amber-700' };
+const TI = { imagen:'🖼', interpretacion:'💭', georeferencia:'📍', transcripcion:'📝' };
+
+function renderAportesList() {
+  const list = document.getElementById('aportes-list');
+  document.getElementById('aporte-count').textContent = `${APP.aportes.length} registros`;
+
+  if (!APP.aportes.length) {
+    list.innerHTML = '<p class="text-xs text-slate-400 py-6 text-center">Sin aportes registrados</p>';
+    return;
+  }
+
+  list.innerHTML = APP.aportes.slice(0, 20).map(a => `
+    <div class="flex items-center gap-2.5 px-3 py-2 bg-slate-50 rounded-xl border border-slate-100 hover:bg-white hover:border-slate-200 transition-all cursor-default">
+      <div class="w-7 h-7 rounded-lg flex items-center justify-center text-sm flex-none ${TC[a.tipo_aporte]||'bg-slate-100 text-slate-500'}">${TI[a.tipo_aporte]||'•'}</div>
+      <div class="flex-1 min-w-0">
+        <div class="text-xs font-medium text-slate-700 truncate">${a.municipio_nombre}</div>
+        <div class="text-[10px] text-slate-400 truncate">${a.pictograma_id} · ${a.tipo_aporte}</div>
+      </div>
+      <div class="text-[10px] text-slate-300 flex-none">${fmtDate(a.fecha)}</div>
+    </div>`).join('');
+}
+
+function fmtDate(d) {
+  if (!d) return '';
+  try { return new Date(d).toLocaleDateString('es-CO',{day:'2-digit',month:'short'}); }
+  catch { return d.slice(0,10); }
+}
+
+// ────────────────────────────────────────────────────────────────
+// STATS
+// ────────────────────────────────────────────────────────────────
+function updateStats() {
+  const cy = APP.cy;
+  if (!cy || !cy.nodes().length) return;
+  const n   = cy.nodes().length;
+  const e   = cy.edges(':visible').length;
+  const den = n > 1 ? (e / (n*(n-1)/2)).toFixed(3) : '0';
+  const avg = n ? (e*2/n).toFixed(1) : '0';
+
+  let topN='—', topD=0;
+  cy.nodes().forEach(nd => {
+    const d = nd.connectedEdges(':visible').length;
+    if (d > topD) { topD=d; topN=nd.data('label')||nd.id(); }
+  });
+
+  document.getElementById('stat-density').textContent = `Densidad: ${den}`;
+  document.getElementById('stat-avgdeg').textContent  = `Grado medio: ${avg}`;
+  document.getElementById('stat-top').textContent     = topD ? `Top: ${topN} (${topD})` : 'Top nodo: —';
+
+  if (APP.activeTab === 'matrix') renderMatrix();
+}
+
+function updateCounts() {
+  const cy = APP.cy;
+  document.getElementById('cnt-nodes').textContent = `${cy?cy.nodes().length:0} nodos`;
+  document.getElementById('cnt-edges').textContent = `${cy?cy.edges(':visible').length:0} conexiones`;
+}
+
+// ────────────────────────────────────────────────────────────────
+// MATRIX
+// ────────────────────────────────────────────────────────────────
+function renderMatrix() {
+  const cy   = APP.cy;
+  const wrap = document.getElementById('matrix-wrap');
+  if (!cy || !cy.edges(':visible').length) {
+    wrap.innerHTML = '<p class="text-xs text-slate-400 text-center py-10">Sin conexiones visibles</p>';
+    return;
+  }
+
+  const set = new Set();
+  cy.edges(':visible').forEach(e => { set.add(e.data('source')); set.add(e.data('target')); });
+  const nodes = [...set].sort().slice(0, 14);
+
+  const mat = {};
+  nodes.forEach(a => { mat[a]={}; nodes.forEach(b => mat[a][b]=0); });
+  cy.edges(':visible').forEach(e => {
+    const s=e.data('source'),t=e.data('target'),w=e.data('weight')||1;
+    if(mat[s]?.[t]!==undefined) mat[s][t]=w;
+    if(mat[t]?.[s]!==undefined) mat[t][s]=w;
+  });
+  const maxW = Math.max(1, ...nodes.flatMap(a=>nodes.map(b=>mat[a][b])));
+  const short = s => s.slice(0,3).toUpperCase();
+
+  const hdrs = nodes.map(n=>`<th class="text-[9px] font-medium text-slate-400 px-1 py-1 text-center" title="${n}">${short(n)}</th>`).join('');
+  const rows = nodes.map(a=>`<tr>
+    <td class="text-[9px] font-medium text-slate-400 pr-2 py-0.5 text-right whitespace-nowrap" title="${a}">${short(a)}</td>
+    ${nodes.map(b=>{
+      if (a===b) return `<td class="px-0.5 py-0.5"><div class="w-5 h-5 rounded-md bg-slate-100 mx-auto"></div></td>`;
+      const w=mat[a][b];
+      if (!w)   return `<td class="px-0.5 py-0.5"><div class="w-5 h-5 mx-auto"></div></td>`;
+      const al  = 0.15 + (w/maxW)*0.85;
+      const fg  = al > 0.55 ? '#fff' : '#3730a3';
+      return `<td class="px-0.5 py-0.5"><div class="matrix-cell w-5 h-5 rounded-md mx-auto flex items-center justify-center text-[8px] font-bold" style="background:rgba(99,102,241,${al});color:${fg}" title="${a} ↔ ${b}: ${w}">${w}</div></td>`;
+    }).join('')}
+  </tr>`).join('');
+
+  wrap.innerHTML = `
+    <div class="overflow-auto">
+      <table class="border-collapse text-xs">
+        <thead><tr><th class="p-1"></th>${hdrs}</tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+    <p class="text-[10px] text-slate-400 mt-3">Mostrando ${nodes.length} municipios más conectados</p>`;
+}
+
+// ────────────────────────────────────────────────────────────────
+// TOOLTIP
+// ────────────────────────────────────────────────────────────────
+function showTip(evt, data) {
+  const box = document.getElementById('cy').getBoundingClientRect();
+  const tip = document.getElementById('node-tooltip');
+  const l   = Math.min(evt.clientX - box.left + 16, box.width - 190);
+  const t   = evt.clientY - box.top - 12;
+  tip.style.left = `${l}px`;
+  tip.style.top  = `${t}px`;
+  document.getElementById('tt-name').textContent = data.label || data.id;
+  document.getElementById('tt-pr').textContent   = data.pagerank  ? (+data.pagerank).toFixed(4)  : '—';
+  document.getElementById('tt-deg').textContent  = data.degree    != null ? data.degree          : '—';
+  document.getElementById('tt-pop').textContent  = data.population ? (+data.population).toLocaleString('es-CO') : '—';
+  tip.classList.remove('hidden');
+}
+function hideTip() { document.getElementById('node-tooltip').classList.add('hidden'); }
+
+// ────────────────────────────────────────────────────────────────
+// NODE DRAWER
+// ────────────────────────────────────────────────────────────────
+function openDrawer(data) {
+  const cy   = APP.cy;
+  const node = cy.getElementById(data.id);
+
+  cy.elements().addClass('dim').removeClass('hl');
+  node.removeClass('dim').addClass('hl');
+  node.neighborhood().removeClass('dim').filter('edge').addClass('hl');
+
+  document.getElementById('nd-dot').style.background  = data.color || '#94a3b8';
+  document.getElementById('nd-title').textContent      = data.label || data.id;
+
+  const nbrs = node.neighborhood('node');
+  const connHTML = nbrs.length
+    ? nbrs.map(n => {
+        const w = node.edgesWith(n).first().data('weight')||1;
+        return `<div class="flex items-center justify-between py-1.5 border-b border-slate-50 last:border-0">
+          <div class="flex items-center gap-2">
+            <div class="w-2.5 h-2.5 rounded-full flex-none" style="background:${n.data('color')||'#94a3b8'}"></div>
+            <span class="text-xs text-slate-700">${n.data('label')||n.id()}</span>
+          </div>
+          <span class="text-xs font-medium text-slate-400">${w}</span>
+        </div>`;
+      }).join('')
+    : '<p class="text-xs text-slate-400 py-2">Sin conexiones</p>';
+
+  const prPct = Math.round((data.pagerank||0) * 1000);
+
+  document.getElementById('nd-body').innerHTML = `
+    <div class="space-y-5">
+      <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-2xl">
+        <div class="w-11 h-11 rounded-full border-[3px] border-white shadow" style="background:${data.color||'#94a3b8'}"></div>
+        <div>
+          <div class="font-semibold text-slate-900">${data.label||data.id}</div>
+          <div class="text-xs text-slate-500">Municipio · Boyacá</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="flex items-center justify-between text-xs mb-1.5">
+          <span class="text-slate-500">PageRank</span>
+          <span class="font-semibold text-slate-800">${(+(data.pagerank||0)).toFixed(5)}</span>
+        </div>
+        <div class="h-1.5 bg-slate-100 rounded-full overflow-hidden">
+          <div class="h-full rounded-full bg-gradient-to-r from-indigo-300 to-indigo-600"
+               style="width:${prPct}%;transition:width .6s ease;"></div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 gap-2 text-xs">
+        <div class="bg-slate-50 rounded-2xl p-3">
+          <div class="text-slate-400 mb-0.5">Grado</div>
+          <div class="text-2xl font-bold text-slate-800">${data.degree||0}</div>
+        </div>
+        <div class="bg-slate-50 rounded-2xl p-3">
+          <div class="text-slate-400 mb-0.5">Betweenness</div>
+          <div class="text-2xl font-bold text-slate-800">${(+(data.betweenness||0)).toFixed(2)}</div>
+        </div>
+        <div class="bg-slate-50 rounded-2xl p-3 col-span-2">
+          <div class="text-slate-400 mb-0.5">Población</div>
+          <div class="text-2xl font-bold text-slate-800">${data.population ? (+data.population).toLocaleString('es-CO') : '—'}</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="text-xs font-semibold text-slate-800 uppercase tracking-wide mb-2">
+          Conexiones <span class="font-normal text-slate-400">(${nbrs.length})</span>
+        </div>
+        <div class="bg-slate-50 rounded-2xl px-3 py-1">${connHTML}</div>
+      </div>
+    </div>`;
+
+  document.getElementById('node-drawer').classList.remove('hidden');
+}
+
+function closeDrawer() {
+  document.getElementById('node-drawer').classList.add('hidden');
+  APP.cy.elements().removeClass('dim hl');
+}
+
+// ────────────────────────────────────────────────────────────────
+// TABS
+// ────────────────────────────────────────────────────────────────
+function switchTab(name) {
+  APP.activeTab = name;
+  ['upload','aportes','matrix'].forEach(t => {
+    document.getElementById(`tab-${t}`).classList.toggle('hidden', t !== name);
+    const btn = document.getElementById(`tab-btn-${t}`);
+    btn.classList.toggle('active', t === name);
+    btn.classList.toggle('text-slate-900', t === name);
+    btn.classList.toggle('text-slate-500', t !== name);
+  });
+  if (name === 'matrix') renderMatrix();
+}
+
+function toggleSidebar() {
+  const p = document.getElementById('left-panel');
+  p.style.width = (parseInt(p.style.width) > 10) ? '0px' : '380px';
+}
+
+// ────────────────────────────────────────────────────────────────
+// IMAGE HANDLING
+// ────────────────────────────────────────────────────────────────
+function onDragOver(e)  { e.preventDefault(); document.getElementById('drop-zone').classList.add('drag-active'); }
+function onDragLeave()  { document.getElementById('drop-zone').classList.remove('drag-active'); }
+function onDrop(e) {
+  e.preventDefault();
+  document.getElementById('drop-zone').classList.remove('drag-active');
+  const f = e.dataTransfer.files[0];
+  if (f?.type.startsWith('image/')) loadFile(f);
+}
+function onFileSelect(e) { if (e.target.files[0]) loadFile(e.target.files[0]); }
+
+function loadFile(file) {
+  APP.uploadedFile = file;
+  const r = new FileReader();
+  r.onload = ev => {
+    document.getElementById('dz-placeholder').classList.add('hidden');
+    const img = document.getElementById('img-preview');
+    img.src = ev.target.result;
+    img.classList.remove('hidden');
+    const fi = document.getElementById('file-info');
+    fi.style.display = 'flex';
+    document.getElementById('file-name').textContent = file.name;
+  };
+  r.readAsDataURL(file);
+}
+
+function clearImage() {
+  APP.uploadedFile = null;
+  document.getElementById('dz-placeholder').classList.remove('hidden');
+  const img = document.getElementById('img-preview');
+  img.classList.add('hidden'); img.src = '';
+  document.getElementById('file-info').style.display = 'none';
+  document.getElementById('file-input').value = '';
+}
+
+// ────────────────────────────────────────────────────────────────
+// TOAST
+// ────────────────────────────────────────────────────────────────
+function toast(msg, type='info') {
+  const pal = { success:'bg-emerald-50 border-emerald-200 text-emerald-800',
+                error:  'bg-red-50 border-red-200 text-red-800',
+                info:   'bg-slate-50 border-slate-200 text-slate-700',
+                warning:'bg-amber-50 border-amber-200 text-amber-800' };
+  const ico = { success:'✓', error:'✕', info:'ℹ', warning:'⚠' };
+  const el  = document.createElement('div');
+  el.className = `toast-in pointer-events-auto flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl border shadow-md text-xs font-medium ${pal[type]||pal.info}`;
+  el.innerHTML = `<span>${ico[type]||'ℹ'}</span><span>${msg}</span>`;
+  document.getElementById('toasts').appendChild(el);
+  setTimeout(() => { el.classList.add('toast-out'); setTimeout(()=>el.remove(),300); }, 3200);
+}
+
+// ────────────────────────────────────────────────────────────────
+// FALLBACK DATA (used when server is offline)
+// ────────────────────────────────────────────────────────────────
+const FALLBACK_MUN = [
+  "Tunja","Sogamoso","Chiquinquirá","Duitama","Paipa","Villa de Leyva",
+  "Moniquirá","Samacá","Ráquira","Nobsa","Tibasosa","Firavitoba",
+  "Aquitania","Tota","Gámeza","Tópaga","Mongua","Socha","Jericó","Belén"
+].map(n => ({ nombre:n }));
+
+const FALLBACK_PIC = [
+  {id:"P-001",sitio:"Cerro de Monserrate Sogamoso",tipo:"antropomorfo"},
+  {id:"P-002",sitio:"Cuevas del Indio Ráquira",tipo:"geométrico"},
+  {id:"P-003",sitio:"Alto de los Molinos Tunja",tipo:"geométrico"},
+  {id:"P-004",sitio:"Abrigos de Iza y Firavitoba",tipo:"solar"},
+  {id:"P-005",sitio:"Piedra Pintada Chiquinquirá",tipo:"zoomorfo"},
+  {id:"P-006",sitio:"Farallones de Gámeza",tipo:"geométrico"},
+  {id:"P-007",sitio:"Cerro de la Culebra Duitama",tipo:"zoomorfo"},
+  {id:"P-008",sitio:"Abrigo del Lago Tota",tipo:"abstracto"},
+  {id:"P-009",sitio:"Lajas de Aquitania",tipo:"solar"},
+  {id:"P-010",sitio:"Peñas del Morro Nobsa",tipo:"antropomorfo"},
+  {id:"P-011",sitio:"Cueva de la Salina",tipo:"abstracto"},
+  {id:"P-012",sitio:"Alto de la Cruz Moniquirá",tipo:"geométrico"},
+  {id:"P-013",sitio:"Piedras de Belén",tipo:"solar"},
+  {id:"P-014",sitio:"Abrigos de Villa de Leyva",tipo:"antropomorfo"},
+  {id:"P-015",sitio:"Cerro del Cacique Sogamoso",tipo:"zoomorfo"},
+];
+
+// ────────────────────────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', boot);
+</script>
+</body>
+</html>

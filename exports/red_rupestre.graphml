@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns
+         http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+<!-- Created by igraph -->
+  <key id="v_nombre" for="node" attr.name="nombre" attr.type="string"/>
+  <key id="v_lat" for="node" attr.name="lat" attr.type="double"/>
+  <key id="v_lng" for="node" attr.name="lng" attr.type="double"/>
+  <key id="v_poblacion" for="node" attr.name="poblacion" attr.type="double"/>
+  <key id="v_activo" for="node" attr.name="activo" attr.type="boolean"/>
+  <key id="v_num_investigadores" for="node" attr.name="num_investigadores" attr.type="double"/>
+  <key id="v_name" for="node" attr.name="name" attr.type="string"/>
+  <key id="e_peso" for="edge" attr.name="peso" attr.type="double"/>
+  <graph id="G" edgedefault="undirected">
+    <node id="n0">
+      <data key="v_nombre">Tunja</data>
+      <data key="v_lat">5.5353</data>
+      <data key="v_lng">-73.3678</data>
+      <data key="v_poblacion">202000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">2</data>
+      <data key="v_name">Tunja</data>
+    </node>
+    <node id="n1">
+      <data key="v_nombre">Sogamoso</data>
+      <data key="v_lat">5.7167</data>
+      <data key="v_lng">-72.9333</data>
+      <data key="v_poblacion">114000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">4</data>
+      <data key="v_name">Sogamoso</data>
+    </node>
+    <node id="n2">
+      <data key="v_nombre">Chiquinquirá</data>
+      <data key="v_lat">5.6167</data>
+      <data key="v_lng">-73.8167</data>
+      <data key="v_poblacion">65000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">4</data>
+      <data key="v_name">Chiquinquirá</data>
+    </node>
+    <node id="n3">
+      <data key="v_nombre">Duitama</data>
+      <data key="v_lat">5.8333</data>
+      <data key="v_lng">-73.0333</data>
+      <data key="v_poblacion">115000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">9</data>
+      <data key="v_name">Duitama</data>
+    </node>
+    <node id="n4">
+      <data key="v_nombre">Paipa</data>
+      <data key="v_lat">5.7833</data>
+      <data key="v_lng">-73.1167</data>
+      <data key="v_poblacion">32000</data>
+      <data key="v_activo">false</data>
+      <data key="v_num_investigadores">10</data>
+      <data key="v_name">Paipa</data>
+    </node>
+    <node id="n5">
+      <data key="v_nombre">Villa de Leyva</data>
+      <data key="v_lat">5.6333</data>
+      <data key="v_lng">-73.5167</data>
+      <data key="v_poblacion">18000</data>
+      <data key="v_activo">false</data>
+      <data key="v_num_investigadores">1</data>
+      <data key="v_name">Villa de Leyva</data>
+    </node>
+    <node id="n6">
+      <data key="v_nombre">Moniquirá</data>
+      <data key="v_lat">5.8833</data>
+      <data key="v_lng">-73.5667</data>
+      <data key="v_poblacion">25000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">9</data>
+      <data key="v_name">Moniquirá</data>
+    </node>
+    <node id="n7">
+      <data key="v_nombre">Samacá</data>
+      <data key="v_lat">5.4833</data>
+      <data key="v_lng">-73.4833</data>
+      <data key="v_poblacion">16000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">4</data>
+      <data key="v_name">Samacá</data>
+    </node>
+    <node id="n8">
+      <data key="v_nombre">Ráquira</data>
+      <data key="v_lat">5.5333</data>
+      <data key="v_lng">-73.6333</data>
+      <data key="v_poblacion">13000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">12</data>
+      <data key="v_name">Ráquira</data>
+    </node>
+    <node id="n9">
+      <data key="v_nombre">Nobsa</data>
+      <data key="v_lat">5.7667</data>
+      <data key="v_lng">-72.95</data>
+      <data key="v_poblacion">17000</data>
+      <data key="v_activo">false</data>
+      <data key="v_num_investigadores">11</data>
+      <data key="v_name">Nobsa</data>
+    </node>
+    <node id="n10">
+      <data key="v_nombre">Tibasosa</data>
+      <data key="v_lat">5.75</data>
+      <data key="v_lng">-73</data>
+      <data key="v_poblacion">14000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">12</data>
+      <data key="v_name">Tibasosa</data>
+    </node>
+    <node id="n11">
+      <data key="v_nombre">Firavitoba</data>
+      <data key="v_lat">5.6667</data>
+      <data key="v_lng">-72.9833</data>
+      <data key="v_poblacion">9000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">9</data>
+      <data key="v_name">Firavitoba</data>
+    </node>
+    <node id="n12">
+      <data key="v_nombre">Aquitania</data>
+      <data key="v_lat">5.5167</data>
+      <data key="v_lng">-72.8833</data>
+      <data key="v_poblacion">11000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">7</data>
+      <data key="v_name">Aquitania</data>
+    </node>
+    <node id="n13">
+      <data key="v_nombre">Tota</data>
+      <data key="v_lat">5.55</data>
+      <data key="v_lng">-72.9</data>
+      <data key="v_poblacion">6000</data>
+      <data key="v_activo">false</data>
+      <data key="v_num_investigadores">4</data>
+      <data key="v_name">Tota</data>
+    </node>
+    <node id="n14">
+      <data key="v_nombre">Gámeza</data>
+      <data key="v_lat">5.8</data>
+      <data key="v_lng">-72.7833</data>
+      <data key="v_poblacion">5500</data>
+      <data key="v_activo">false</data>
+      <data key="v_num_investigadores">8</data>
+      <data key="v_name">Gámeza</data>
+    </node>
+    <node id="n15">
+      <data key="v_nombre">Tópaga</data>
+      <data key="v_lat">5.75</data>
+      <data key="v_lng">-72.8</data>
+      <data key="v_poblacion">5200</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">10</data>
+      <data key="v_name">Tópaga</data>
+    </node>
+    <node id="n16">
+      <data key="v_nombre">Mongua</data>
+      <data key="v_lat">5.7167</data>
+      <data key="v_lng">-72.7167</data>
+      <data key="v_poblacion">5800</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">5</data>
+      <data key="v_name">Mongua</data>
+    </node>
+    <node id="n17">
+      <data key="v_nombre">Socha</data>
+      <data key="v_lat">6.0333</data>
+      <data key="v_lng">-72.6833</data>
+      <data key="v_poblacion">9500</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">13</data>
+      <data key="v_name">Socha</data>
+    </node>
+    <node id="n18">
+      <data key="v_nombre">Jericó</data>
+      <data key="v_lat">5.9833</data>
+      <data key="v_lng">-72.5833</data>
+      <data key="v_poblacion">7000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">14</data>
+      <data key="v_name">Jericó</data>
+    </node>
+    <node id="n19">
+      <data key="v_nombre">Belén</data>
+      <data key="v_lat">6.0167</data>
+      <data key="v_lng">-72.9333</data>
+      <data key="v_poblacion">8500</data>
+      <data key="v_activo">false</data>
+      <data key="v_num_investigadores">1</data>
+      <data key="v_name">Belén</data>
+    </node>
+    <edge source="n2" target="n18">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n1" target="n2">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n2" target="n10">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n2" target="n13">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n2" target="n5">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n1" target="n18">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n10" target="n18">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n13" target="n18">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n5" target="n18">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n1" target="n10">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n1" target="n13">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n1" target="n5">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n10" target="n13">
+      <data key="e_peso">3</data>
+    </edge>
+    <edge source="n5" target="n10">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n5" target="n13">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n2" target="n16">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n2" target="n9">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n2" target="n8">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n9" target="n16">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n8" target="n16">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n5" target="n16">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n8" target="n9">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n5" target="n9">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n5" target="n8">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n12" target="n16">
+      <data key="e_peso">3</data>
+    </edge>
+    <edge source="n4" target="n12">
+      <data key="e_peso">3</data>
+    </edge>
+    <edge source="n7" target="n12">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n12" target="n17">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n12" target="n15">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n4" target="n16">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n7" target="n16">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n16" target="n17">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n15" target="n16">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n4" target="n7">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n4" target="n17">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n4" target="n15">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n7" target="n17">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n7" target="n15">
+      <data key="e_peso">3</data>
+    </edge>
+    <edge source="n15" target="n17">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n3" target="n18">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n3" target="n6">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n3" target="n7">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n3" target="n10">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n3" target="n13">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n3" target="n15">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n6" target="n18">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n7" target="n18">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n15" target="n18">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n6" target="n7">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n6" target="n10">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n6" target="n13">
+      <data key="e_peso">3</data>
+    </edge>
+    <edge source="n6" target="n15">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n7" target="n10">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n7" target="n13">
+      <data key="e_peso">4</data>
+    </edge>
+    <edge source="n10" target="n15">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n13" target="n15">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n11" target="n12">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n12" target="n14">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n12" target="n18">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n1" target="n12">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n11" target="n14">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n11" target="n18">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n11" target="n16">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n1" target="n11">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n14" target="n18">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n14" target="n16">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n1" target="n14">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n16" target="n18">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n1" target="n16">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n2" target="n11">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n2" target="n6">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n2" target="n7">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n6" target="n11">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n7" target="n11">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n2" target="n3">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n2" target="n4">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n2" target="n17">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n3" target="n4">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n3" target="n17">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n4" target="n10">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n10" target="n17">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n6" target="n12">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n9" target="n12">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n8" target="n12">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n12" target="n13">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n6" target="n14">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n9" target="n14">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n4" target="n14">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n8" target="n14">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n13" target="n14">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n6" target="n9">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n4" target="n6">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n6" target="n8">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n4" target="n9">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n9" target="n13">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n4" target="n8">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n4" target="n13">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n8" target="n13">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n7" target="n19">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n10" target="n19">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n13" target="n19">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n15" target="n19">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n18" target="n19">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n17" target="n19">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n17" target="n18">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n13" target="n17">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n2" target="n14">
+      <data key="e_peso">2</data>
+    </edge>
+    <edge source="n3" target="n14">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n3" target="n8">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n14" target="n17">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n8" target="n17">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n2" target="n19">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n14" target="n19">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n1" target="n19">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n7" target="n14">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n1" target="n7">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n3" target="n16">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n0" target="n3">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n6" target="n16">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n13" target="n16">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n0" target="n16">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n0" target="n6">
+      <data key="e_peso">1</data>
+    </edge>
+    <edge source="n0" target="n13">
+      <data key="e_peso">1</data>
+    </edge>
+  </graph>
+</graphml>

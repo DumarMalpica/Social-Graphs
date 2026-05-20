@@ -1,0 +1,162 @@
+[
+  {
+    "nombre": "Tunja",
+    "lat": 5.5353,
+    "lng": -73.3678,
+    "poblacion": 202000,
+    "activo": true,
+    "num_investigadores": 2
+  },
+  {
+    "nombre": "Sogamoso",
+    "lat": 5.7167,
+    "lng": -72.9333,
+    "poblacion": 114000,
+    "activo": true,
+    "num_investigadores": 4
+  },
+  {
+    "nombre": "Chiquinquirá",
+    "lat": 5.6167,
+    "lng": -73.8167,
+    "poblacion": 65000,
+    "activo": true,
+    "num_investigadores": 4
+  },
+  {
+    "nombre": "Duitama",
+    "lat": 5.8333,
+    "lng": -73.0333,
+    "poblacion": 115000,
+    "activo": true,
+    "num_investigadores": 9
+  },
+  {
+    "nombre": "Paipa",
+    "lat": 5.7833,
+    "lng": -73.1167,
+    "poblacion": 32000,
+    "activo": false,
+    "num_investigadores": 10
+  },
+  {
+    "nombre": "Villa de Leyva",
+    "lat": 5.6333,
+    "lng": -73.5167,
+    "poblacion": 18000,
+    "activo": false,
+    "num_investigadores": 1
+  },
+  {
+    "nombre": "Moniquirá",
+    "lat": 5.8833,
+    "lng": -73.5667,
+    "poblacion": 25000,
+    "activo": true,
+    "num_investigadores": 9
+  },
+  {
+    "nombre": "Samacá",
+    "lat": 5.4833,
+    "lng": -73.4833,
+    "poblacion": 16000,
+    "activo": true,
+    "num_investigadores": 4
+  },
+  {
+    "nombre": "Ráquira",
+    "lat": 5.5333,
+    "lng": -73.6333,
+    "poblacion": 13000,
+    "activo": true,
+    "num_investigadores": 12
+  },
+  {
+    "nombre": "Nobsa",
+    "lat": 5.7667,
+    "lng": -72.95,
+    "poblacion": 17000,
+    "activo": false,
+    "num_investigadores": 11
+  },
+  {
+    "nombre": "Tibasosa",
+    "lat": 5.75,
+    "lng": -73.0,
+    "poblacion": 14000,
+    "activo": true,
+    "num_investigadores": 12
+  },
+  {
+    "nombre": "Firavitoba",
+    "lat": 5.6667,
+    "lng": -72.9833,
+    "poblacion": 9000,
+    "activo": true,
+    "num_investigadores": 9
+  },
+  {
+    "nombre": "Aquitania",
+    "lat": 5.5167,
+    "lng": -72.8833,
+    "poblacion": 11000,
+    "activo": true,
+    "num_investigadores": 7
+  },
+  {
+    "nombre": "Tota",
+    "lat": 5.55,
+    "lng": -72.9,
+    "poblacion": 6000,
+    "activo": false,
+    "num_investigadores": 4
+  },
+  {
+    "nombre": "Gámeza",
+    "lat": 5.8,
+    "lng": -72.7833,
+    "poblacion": 5500,
+    "activo": false,
+    "num_investigadores": 8
+  },
+  {
+    "nombre": "Tópaga",
+    "lat": 5.75,
+    "lng": -72.8,
+    "poblacion": 5200,
+    "activo": true,
+    "num_investigadores": 10
+  },
+  {
+    "nombre": "Mongua",
+    "lat": 5.7167,
+    "lng": -72.7167,
+    "poblacion": 5800,
+    "activo": true,
+    "num_investigadores": 5
+  },
+  {
+    "nombre": "Socha",
+    "lat": 6.0333,
+    "lng": -72.6833,
+    "poblacion": 9500,
+    "activo": true,
+    "num_investigadores": 13
+  },
+  {
+    "nombre": "Jericó",
+    "lat": 5.9833,
+    "lng": -72.5833,
+    "poblacion": 7000,
+    "activo": true,
+    "num_investigadores": 14
+  },
+  {
+    "nombre": "Belén",
+    "lat": 6.0167,
+    "lng": -72.9333,
+    "poblacion": 8500,
+    "activo": false,
+    "num_investigadores": 1
+  }
+]

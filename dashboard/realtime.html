@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rupestre AI - Real-time Grafo</title>
+  <script src="https://cdn.jsdelivr.net/npm/graphology@0.25.4/dist/graphology.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/graphology-layout-forceatlas2@0.10.1/build/graphology-layout-forceatlas2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sigma@2.4.0/build/sigma.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/socket.io-client@4.6.1/dist/socket.io.min.js"></script>
+  <style>
+    :root {
+      --ink: #1f2421;
+      --muted: #666;
+      --line: #d8ded8;
+      --bg: #f4f8f5;
+      --accent: #1d9e75;
+      --accent-light: #e1f5ee;
+      --danger: #c53030;
+      --warning: #f57c00;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      overflow: hidden;
+    }
+    main {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      height: 100vh;
+      gap: 0;
+    }
+    #container {
+      position: relative;
+      background: #fbfdfb;
+      overflow: hidden;
+    }
+    #sigma {
+      width: 100%;
+      height: 100%;
+    }
+    aside {
+      border-left: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      background: white;
+    }
+    .sidebar-header {
+      padding: 20px;
+      border-bottom: 2px solid var(--accent);
+      background: linear-gradient(135deg, var(--accent-light), white);
+    }
+    .sidebar-header h1 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .sidebar-header p {
+      margin: 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .sidebar-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* Stats Panel */
+    .stats-panel {
+      padding: 16px 20px;
+      background: #f9faf9;
+      border-bottom: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 12px;
+      background: white;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+    }
+    .stat-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Events Feed */
+    .events-section {
+      flex: 1;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid var(--line);
+    }
+    .section-title {
+      padding: 16px 20px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 0.5px;
+      background: #f9faf9;
+    }
+    #events-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 0;
+    }
+    .event-item {
+      padding: 12px 16px;
+      border-left: 3px solid var(--accent);
+      background: white;
+      margin: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      line-height: 1.4;
+      animation: slideIn 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+    .event-item:hover {
+      background: var(--accent-light);
+    }
+    .event-time {
+      font-size: 10px;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .event-text {
+      color: var(--ink);
+      font-weight: 500;
+    }
+    .event-type {
+      display: inline-block;
+      font-size: 9px;
+      padding: 2px 6px;
+      background: var(--accent);
+      color: white;
+      border-radius: 3px;
+      margin-top: 4px;
+    }
+
+    /* Connections List */
+    .connections-section {
+      flex: 1;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    #connections-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 0;
+    }
+    .connection-item {
+      padding: 10px 16px;
+      border-left: 3px solid var(--warning);
+      background: white;
+      margin: 4px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      animation: slideIn 0.4s ease;
+    }
+    .connection-names {
+      font-weight: 600;
+      flex: 1;
+    }
+    .connection-weight {
+      background: var(--accent);
+      color: white;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    /* Controls */
+    .controls {
+      padding: 16px 20px;
+      border-top: 1px solid var(--line);
+      display: flex;
+      gap: 8px;
+    }
+    button {
+      flex: 1;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--ink);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    button:hover {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+    button.danger {
+      background: var(--danger);
+      color: white;
+      border-color: var(--danger);
+    }
+    button.danger:hover {
+      opacity: 0.9;
+    }
+
+    /* Status indicator */
+    .status-indicator {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--danger);
+      border-radius: 50%;
+      margin-right: 6px;
+      animation: pulse 2s infinite;
+    }
+    .status-indicator.connected {
+      background: var(--accent);
+      animation: none;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    /* Tooltip */
+    #tooltip {
+      position: absolute;
+      display: none;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 12px;
+      font-size: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--line);
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--muted);
+    }
+
+    /* Loading state */
+    .loading {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+    }
+    .loading::after {
+      content: '';
+      animation: dots 1.5s steps(4, end) infinite;
+    }
+    @keyframes dots {
+      0%, 20% { content: ''; }
+      40% { content: '·'; }
+      60% { content: '··'; }
+      80%, 100% { content: '···'; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <div id="container">
+    <div id="sigma"></div>
+    <div id="tooltip"></div>
+  </div>
+
+  <aside>
+    <div class="sidebar-header">
+      <h1>Rupestre AI</h1>
+      <p>
+        <span class="status-indicator" id="status"></span>
+        <span id="status-text">Conectando...</span>
+      </p>
+    </div>
+
+    <div class="stats-panel">
+      <div class="stat-item">
+        <span class="stat-value" id="node-count">0</span>
+        <span class="stat-label">Municipios</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" id="edge-count">0</span>
+        <span class="stat-label">Conexiones</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" id="event-count">0</span>
+        <span class="stat-label">Eventos</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value" id="new-edges">0</span>
+        <span class="stat-label">Nuevas</span>
+      </div>
+    </div>
+
+    <div class="sidebar-content">
+      <div class="events-section">
+        <div class="section-title">📡 Eventos en Vivo</div>
+        <div id="events-list"></div>
+      </div>
+
+      <div class="connections-section">
+        <div class="section-title">✨ Nuevas Conexiones</div>
+        <div id="connections-list"></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="reset-layout">↻ Reset Layout</button>
+      <button id="clear-new" class="danger">Limpiar</button>
+    </div>
+  </aside>
+</main>
+
+<script>
+const socket = io();
+let graph = new graphology.Graph();
+let renderer;
+let newEdgeCount = 0;
+const recentConnections = [];
+
+// Estado
+const state = {
+  nodes: 0,
+  edges: 0,
+  events: 0,
+  connected: false
+};
+
+// Colores por municipio
+const colors = {
+  'Sogamoso': '#1D9E75',
+  'Tunja': '#534AB7',
+  'Chiquinquirá': '#D85A30',
+  'Duitama': '#BA7517',
+  'Paipa': '#E85D75',
+  'Villa de Leyva': '#6C6C6C',
+  'Moniquirá': '#8B7355',
+  'Samacá': '#C5A572',
+  'Ráquira': '#A0A0A0',
+  'Nobsa': '#7B68EE',
+  'Tibasosa': '#20B2AA',
+  'Firavitoba': '#FF6347',
+  'Aquitania': '#FFD700',
+  'Tota': '#3CB371',
+  'Gámeza': '#FF8C00',
+  'Tópaga': '#DC143C',
+  'Mongua': '#00CED1',
+  'Socha': '#9932CC',
+  'Jericó': '#FF4500',
+  'Belén': '#32CD32'
+};
+
+function getColor(municipio) {
+  return colors[municipio] || '#888888';
+}
+
+// Inicializar Sigma.js
+function initializeSigma() {
+  const container = document.getElementById('sigma');
+  
+  renderer = new Sigma(graph, container, {
+    allowInvalidContainer: true,
+    renderLabels: true,
+    labelDensity: 1,
+    defaultEdgeType: 'curve',
+    labelSize: 14,
+  });
+
+  // Interactividad
+  renderer.on('enterNode', ({ node }) => {
+    graph.forEachNode((n) => {
+      if (n === node) renderer.setSetting(`nodeReducer:${n}`, (n, a) => ({ ...a, size: 15 }));
+      else renderer.setSetting(`nodeReducer:${n}`, (n, a) => ({ ...a, size: 5 }));
+    });
+  });
+  renderer.on('leaveNode', () => {
+    renderer.setSetting('nodeReducer', () => ({}));
+  });
+
+  // Layout inicial
+  if (graph.order > 0) {
+    startLayout();
+  }
+}
+
+function startLayout() {
+  const layout = new graphologyLayoutForceAtlas2(graph, {
+    iterations: 50,
+    settings: {
+      linLogMode: false,
+      strongGravityMode: false,
+      gravity: 1,
+      scaling: 2,
+      slowDown: 2,
+      edgeWeightInfluence: 0.5,
+    }
+  });
+  layout.start();
+  setTimeout(() => layout.stop(), 2000);
+}
+
+// Conexión WebSocket
+socket.on('connect', () => {
+  console.log('✓ Conectado al servidor');
+  updateStatus(true);
+});
+
+socket.on('init', (data) => {
+  console.log('📊 Datos iniciales recibidos:', data);
+  
+  // Cargar grafo inicial
+  graph.clear();
+  
+  data.nodes.forEach(node => {
+    graph.addNode(node.data.id, {
+      label: node.data.label,
+      color: getColor(node.data.label),
+      size: 8 + (node.data.grado || 1),
+      x: Math.random(),
+      y: Math.random(),
+    });
+  });
+
+  data.edges.forEach(edge => {
+    if (graph.hasNode(edge.data.source) && graph.hasNode(edge.data.target)) {
+      graph.addEdge(edge.data.source, edge.data.target, {
+        weight: edge.data.peso,
+        label: String(edge.data.peso),
+      });
+    }
+  });
+
+  if (!renderer) {
+    initializeSigma();
+  }
+
+  state.nodes = data.nodes.length;
+  state.edges = data.edges.length;
+  state.events = data.events.length;
+  updateStats();
+});
+
+socket.on('event', (event) => {
+  state.events++;
+  console.log('📡 Evento:', event.description);
+  
+  addEventToList({
+    time: new Date(event.timestamp).toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' }),
+    description: event.description,
+    type: event.type
+  });
+  
+  updateStats();
+});
+
+socket.on('connection_created', (data) => {
+  console.log('✨ Nueva conexión:', data.source, '↔', data.target);
+  
+  const { source, target, peso } = data;
+
+  // Asegurar que existen los nodos
+  if (!graph.hasNode(source)) {
+    graph.addNode(source, {
+      label: source,
+      color: getColor(source),
+      size: 8,
+      x: Math.random(),
+      y: Math.random(),
+    });
+  }
+  if (!graph.hasNode(target)) {
+    graph.addNode(target, {
+      label: target,
+      color: getColor(target),
+      size: 8,
+      x: Math.random(),
+      y: Math.random(),
+    });
+  }
+
+  // Actualizar o crear arista
+  if (graph.hasEdge(source, target)) {
+    graph.setEdgeAttribute(source, target, 'weight', peso);
+    graph.setEdgeAttribute(source, target, 'label', String(peso));
+  } else {
+    graph.addEdge(source, target, {
+      weight: peso,
+      label: String(peso),
+    });
+    newEdgeCount++;
+  }
+
+  state.edges = graph.size;
+  
+  // Agregar a lista de conexiones recientes
+  recentConnections.unshift({ source, target, peso });
+  if (recentConnections.length > 15) recentConnections.pop();
+  
+  addConnectionToList(source, target, peso);
+  updateStats();
+});
+
+socket.on('disconnect', () => {
+  console.log('✗ Desconectado');
+  updateStatus(false);
+});
+
+function updateStatus(connected) {
+  state.connected = connected;
+  const indicator = document.getElementById('status');
+  const text = document.getElementById('status-text');
+  
+  if (connected) {
+    indicator.classList.add('connected');
+    indicator.classList.remove('status-indicator');
+    text.textContent = '🟢 En vivo';
+  } else {
+    indicator.classList.remove('connected');
+    indicator.classList.add('status-indicator');
+    text.textContent = '🔴 Desconectado';
+  }
+}
+
+function updateStats() {
+  document.getElementById('node-count').textContent = state.nodes;
+  document.getElementById('edge-count').textContent = state.edges;
+  document.getElementById('event-count').textContent = state.events;
+  document.getElementById('new-edges').textContent = newEdgeCount;
+}
+
+function addEventToList(event) {
+  const list = document.getElementById('events-list');
+  const item = document.createElement('div');
+  item.className = 'event-item';
+  item.innerHTML = `
+    <span class="event-time">${event.time}</span>
+    <span class="event-text">${event.description}</span>
+    <span class="event-type">${event.type}</span>
+  `;
+  list.insertBefore(item, list.firstChild);
+  
+  // Mantener máximo 30 eventos
+  while (list.children.length > 30) {
+    list.removeChild(list.lastChild);
+  }
+}
+
+function addConnectionToList(source, target, peso) {
+  const list = document.getElementById('connections-list');
+  const item = document.createElement('div');
+  item.className = 'connection-item';
+  item.innerHTML = `
+    <div class="connection-names">${source} ↔ ${target}</div>
+    <div class="connection-weight">×${peso}</div>
+  `;
+  list.insertBefore(item, list.firstChild);
+  
+  // Mantener máximo 20 conexiones
+  while (list.children.length > 20) {
+    list.removeChild(list.lastChild);
+  }
+}
+
+// Botones
+document.getElementById('reset-layout').addEventListener('click', () => {
+  startLayout();
+});
+
+document.getElementById('clear-new').addEventListener('click', () => {
+  newEdgeCount = 0;
+  document.getElementById('connections-list').innerHTML = '';
+  updateStats();
+});
+
+// Iniciar
+console.log('🚀 Dashboard iniciado');
+</script>
+</body>
+</html>

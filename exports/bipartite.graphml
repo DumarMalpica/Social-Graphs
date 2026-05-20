@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns
+         http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+<!-- Created by igraph -->
+  <key id="v_nombre" for="node" attr.name="nombre" attr.type="string"/>
+  <key id="v_lat" for="node" attr.name="lat" attr.type="double"/>
+  <key id="v_lng" for="node" attr.name="lng" attr.type="double"/>
+  <key id="v_poblacion" for="node" attr.name="poblacion" attr.type="double"/>
+  <key id="v_activo" for="node" attr.name="activo" attr.type="boolean"/>
+  <key id="v_num_investigadores" for="node" attr.name="num_investigadores" attr.type="double"/>
+  <key id="v_name" for="node" attr.name="name" attr.type="string"/>
+  <key id="v_tipo" for="node" attr.name="tipo" attr.type="string"/>
+  <key id="v_id" for="node" attr.name="id" attr.type="string"/>
+  <key id="v_sitio" for="node" attr.name="sitio" attr.type="string"/>
+  <key id="v_antiguedad_aprox" for="node" attr.name="antiguedad_aprox" attr.type="double"/>
+  <key id="v_estado_conservacion" for="node" attr.name="estado_conservacion" attr.type="string"/>
+  <key id="e_peso" for="edge" attr.name="peso" attr.type="double"/>
+  <key id="e_confianza_promedio" for="edge" attr.name="confianza_promedio" attr.type="double"/>
+  <key id="e_tipos_aporte" for="edge" attr.name="tipos_aporte" attr.type="string"/>
+  <graph id="G" edgedefault="directed">
+    <node id="n0">
+      <data key="v_nombre">Tunja</data>
+      <data key="v_lat">5.5353</data>
+      <data key="v_lng">-73.3678</data>
+      <data key="v_poblacion">202000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">2</data>
+      <data key="v_name">Tunja</data>
+      <data key="v_tipo">municipio</data>
+      <data key="v_id">None</data>
+      <data key="v_sitio">None</data>
+      <data key="v_estado_conservacion">None</data>
+    </node>
+    <node id="n1">
+      <data key="v_nombre">Sogamoso</data>
+      <data key="v_lat">5.7167</data>
+      <data key="v_lng">-72.9333</data>
+      <data key="v_poblacion">114000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">4</data>
+      <data key="v_name">Sogamoso</data>
+      <data key="v_tipo">municipio</data>
+      <data key="v_id">None</data>
+      <data key="v_sitio">None</data>
+      <data key="v_estado_conservacion">None</data>
+    </node>
+    <node id="n2">
+      <data key="v_nombre">Chiquinquirá</data>
+      <data key="v_lat">5.6167</data>
+      <data key="v_lng">-73.8167</data>
+      <data key="v_poblacion">65000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">4</data>
+      <data key="v_name">Chiquinquirá</data>
+      <data key="v_tipo">municipio</data>
+      <data key="v_id">None</data>
+      <data key="v_sitio">None</data>
+      <data key="v_estado_conservacion">None</data>
+    </node>
+    <node id="n3">
+      <data key="v_nombre">Duitama</data>
+      <data key="v_lat">5.8333</data>
+      <data key="v_lng">-73.0333</data>
+      <data key="v_poblacion">115000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">9</data>
+      <data key="v_name">Duitama</data>
+      <data key="v_tipo">municipio</data>
+      <data key="v_id">None</data>
+      <data key="v_sitio">None</data>
+      <data key="v_estado_conservacion">None</data>
+    </node>
+    <node id="n4">
+      <data key="v_nombre">Paipa</data>
+      <data key="v_lat">5.7833</data>
+      <data key="v_lng">-73.1167</data>
+      <data key="v_poblacion">32000</data>
+      <data key="v_activo">false</data>
+      <data key="v_num_investigadores">10</data>
+      <data key="v_name">Paipa</data>
+      <data key="v_tipo">municipio</data>
+      <data key="v_id">None</data>
+      <data key="v_sitio">None</data>
+      <data key="v_estado_conservacion">None</data>
+    </node>
+    <node id="n5">
+      <data key="v_nombre">Villa de Leyva</data>
+      <data key="v_lat">5.6333</data>
+      <data key="v_lng">-73.5167</data>
+      <data key="v_poblacion">18000</data>
+      <data key="v_activo">false</data>
+      <data key="v_num_investigadores">1</data>
+      <data key="v_name">Villa de Leyva</data>
+      <data key="v_tipo">municipio</data>
+      <data key="v_id">None</data>
+      <data key="v_sitio">None</data>
+      <data key="v_estado_conservacion">None</data>
+    </node>
+    <node id="n6">
+      <data key="v_nombre">Moniquirá</data>
+      <data key="v_lat">5.8833</data>
+      <data key="v_lng">-73.5667</data>
+      <data key="v_poblacion">25000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">9</data>
+      <data key="v_name">Moniquirá</data>
+      <data key="v_tipo">municipio</data>
+      <data key="v_id">None</data>
+      <data key="v_sitio">None</data>
+      <data key="v_estado_conservacion">None</data>
+    </node>
+    <node id="n7">
+      <data key="v_nombre">Samacá</data>
+      <data key="v_lat">5.4833</data>
+      <data key="v_lng">-73.4833</data>
+      <data key="v_poblacion">16000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">4</data>
+      <data key="v_name">Samacá</data>
+      <data key="v_tipo">municipio</data>
+      <data key="v_id">None</data>
+      <data key="v_sitio">None</data>
+      <data key="v_estado_conservacion">None</data>
+    </node>
+    <node id="n8">
+      <data key="v_nombre">Ráquira</data>
+      <data key="v_lat">5.5333</data>
+      <data key="v_lng">-73.6333</data>
+      <data key="v_poblacion">13000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">12</data>
+      <data key="v_name">Ráquira</data>
+      <data key="v_tipo">municipio</data>
+      <data key="v_id">None</data>
+      <data key="v_sitio">None</data>
+      <data key="v_estado_conservacion">None</data>
+    </node>
+    <node id="n9">
+      <data key="v_nombre">Nobsa</data>
+      <data key="v_lat">5.7667</data>
+      <data key="v_lng">-72.95</data>
+      <data key="v_poblacion">17000</data>
+      <data key="v_activo">false</data>
+      <data key="v_num_investigadores">11</data>
+      <data key="v_name">Nobsa</data>
+      <data key="v_tipo">municipio</data>
+      <data key="v_id">None</data>
+      <data key="v_sitio">None</data>
+      <data key="v_estado_conservacion">None</data>
+    </node>
+    <node id="n10">
+      <data key="v_nombre">Tibasosa</data>
+      <data key="v_lat">5.75</data>
+      <data key="v_lng">-73</data>
+      <data key="v_poblacion">14000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">12</data>
+      <data key="v_name">Tibasosa</data>
+      <data key="v_tipo">municipio</data>
+      <data key="v_id">None</data>
+      <data key="v_sitio">None</data>
+      <data key="v_estado_conservacion">None</data>
+    </node>
+    <node id="n11">
+      <data key="v_nombre">Firavitoba</data>
+      <data key="v_lat">5.6667</data>
+      <data key="v_lng">-72.9833</data>
+      <data key="v_poblacion">9000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">9</data>
+      <data key="v_name">Firavitoba</data>
+      <data key="v_tipo">municipio</data>
+      <data key="v_id">None</data>
+      <data key="v_sitio">None</data>
+      <data key="v_estado_conservacion">None</data>
+    </node>
+    <node id="n12">
+      <data key="v_nombre">Aquitania</data>
+      <data key="v_lat">5.5167</data>
+      <data key="v_lng">-72.8833</data>
+      <data key="v_poblacion">11000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">7</data>
+      <data key="v_name">Aquitania</data>
+      <data key="v_tipo">municipio</data>
+      <data key="v_id">None</data>
+      <data key="v_sitio">None</data>
+      <data key="v_estado_conservacion">None</data>
+    </node>
+    <node id="n13">
+      <data key="v_nombre">Tota</data>
+      <data key="v_lat">5.55</data>
+      <data key="v_lng">-72.9</data>
+      <data key="v_poblacion">6000</data>
+      <data key="v_activo">false</data>
+      <data key="v_num_investigadores">4</data>
+      <data key="v_name">Tota</data>
+      <data key="v_tipo">municipio</data>
+      <data key="v_id">None</data>
+      <data key="v_sitio">None</data>
+      <data key="v_estado_conservacion">None</data>
+    </node>
+    <node id="n14">
+      <data key="v_nombre">Gámeza</data>
+      <data key="v_lat">5.8</data>
+      <data key="v_lng">-72.7833</data>
+      <data key="v_poblacion">5500</data>
+      <data key="v_activo">false</data>
+      <data key="v_num_investigadores">8</data>
+      <data key="v_name">Gámeza</data>
+      <data key="v_tipo">municipio</data>
+      <data key="v_id">None</data>
+      <data key="v_sitio">None</data>
+      <data key="v_estado_conservacion">None</data>
+    </node>
+    <node id="n15">
+      <data key="v_nombre">Tópaga</data>
+      <data key="v_lat">5.75</data>
+      <data key="v_lng">-72.8</data>
+      <data key="v_poblacion">5200</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">10</data>
+      <data key="v_name">Tópaga</data>
+      <data key="v_tipo">municipio</data>
+      <data key="v_id">None</data>
+      <data key="v_sitio">None</data>
+      <data key="v_estado_conservacion">None</data>
+    </node>
+    <node id="n16">
+      <data key="v_nombre">Mongua</data>
+      <data key="v_lat">5.7167</data>
+      <data key="v_lng">-72.7167</data>
+      <data key="v_poblacion">5800</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">5</data>
+      <data key="v_name">Mongua</data>
+      <data key="v_tipo">municipio</data>
+      <data key="v_id">None</data>
+      <data key="v_sitio">None</data>
+      <data key="v_estado_conservacion">None</data>
+    </node>
+    <node id="n17">
+      <data key="v_nombre">Socha</data>
+      <data key="v_lat">6.0333</data>
+      <data key="v_lng">-72.6833</data>
+      <data key="v_poblacion">9500</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">13</data>
+      <data key="v_name">Socha</data>
+      <data key="v_tipo">municipio</data>
+      <data key="v_id">None</data>
+      <data key="v_sitio">None</data>
+      <data key="v_estado_conservacion">None</data>
+    </node>
+    <node id="n18">
+      <data key="v_nombre">Jericó</data>
+      <data key="v_lat">5.9833</data>
+      <data key="v_lng">-72.5833</data>
+      <data key="v_poblacion">7000</data>
+      <data key="v_activo">true</data>
+      <data key="v_num_investigadores">14</data>
+      <data key="v_name">Jericó</data>
+      <data key="v_tipo">municipio</data>
+      <data key="v_id">None</data>
+      <data key="v_sitio">None</data>
+      <data key="v_estado_conservacion">None</data>
+    </node>
+    <node id="n19">
+      <data key="v_nombre">Belén</data>
+      <data key="v_lat">6.0167</data>
+      <data key="v_lng">-72.9333</data>
+      <data key="v_poblacion">8500</data>
+      <data key="v_activo">false</data>
+      <data key="v_num_investigadores">1</data>
+      <data key="v_name">Belén</data>
+      <data key="v_tipo">municipio</data>
+      <data key="v_id">None</data>
+      <data key="v_sitio">None</data>
+      <data key="v_estado_conservacion">None</data>
+    </node>
+    <node id="n20">
+      <data key="v_nombre">None</data>
+      <data key="v_activo">false</data>
+      <data key="v_name">P-001</data>
+      <data key="v_tipo">pictograma</data>
+      <data key="v_id">P-001</data>
+      <data key="v_sitio">Cerro de Monserrate Sogamoso</data>
+      <data key="v_antiguedad_aprox">2231</data>
+      <data key="v_estado_conservacion">regular</data>
+    </node>
+    <node id="n21">
+      <data key="v_nombre">None</data>
+      <data key="v_activo">false</data>
+      <data key="v_name">P-002</data>
+      <data key="v_tipo">pictograma</data>
+      <data key="v_id">P-002</data>
+      <data key="v_sitio">Cuevas del Indio Ráquira</data>
+      <data key="v_antiguedad_aprox">1136</data>
+      <data key="v_estado_conservacion">bueno</data>
+    </node>
+    <node id="n22">
+      <data key="v_nombre">None</data>
+      <data key="v_activo">false</data>
+      <data key="v_name">P-003</data>
+      <data key="v_tipo">pictograma</data>
+      <data key="v_id">P-003</data>
+      <data key="v_sitio">Alto de los Molinos Tunja</data>
+      <data key="v_antiguedad_aprox">918</data>
+      <data key="v_estado_conservacion">bueno</data>
+    </node>
+    <node id="n23">
+      <data key="v_nombre">None</data>
+      <data key="v_activo">false</data>
+      <data key="v_name">P-004</data>
+      <data key="v_tipo">pictograma</data>
+      <data key="v_id">P-004</data>
+      <data key="v_sitio">Abrigos de Iza y Firavitoba</data>
+      <data key="v_antiguedad_aprox">896</data>
+      <data key="v_estado_conservacion">regular</data>
+    </node>
+    <node id="n24">
+      <data key="v_nombre">None</data>
+      <data key="v_activo">false</data>
+      <data key="v_name">P-005</data>
+      <data key="v_tipo">pictograma</data>
+      <data key="v_id">P-005</data>
+      <data key="v_sitio">Piedra Pintada de Tibasosa</data>
+      <data key="v_antiguedad_aprox">2972</data>
+      <data key="v_estado_conservacion">regular</data>
+    </node>
+    <node id="n25">
+      <data key="v_nombre">None</data>
+      <data key="v_activo">false</data>
+      <data key="v_name">P-006</data>
+      <data key="v_tipo">pictograma</data>
+      <data key="v_id">P-006</data>
+      <data key="v_sitio">Farallones de Gámeza</data>
+      <data key="v_antiguedad_aprox">2381</data>
+      <data key="v_estado_conservacion">deteriorado</data>
+    </node>
+    <node id="n26">
+      <data key="v_nombre">None</data>
+      <data key="v_activo">false</data>
+      <data key="v_name">P-007</data>
+      <data key="v_tipo">pictograma</data>
+      <data key="v_id">P-007</data>
+      <data key="v_sitio">Cerro de la Culebra Tópaga</data>
+      <data key="v_antiguedad_aprox">2050</data>
+      <data key="v_estado_conservacion">bueno</data>
+    </node>
+    <node id="n27">
+      <data key="v_nombre">None</data>
+      <data key="v_activo">false</data>
+      <data key="v_name">P-008</data>
+      <data key="v_tipo">pictograma</data>
+      <data key="v_id">P-008</data>
+      <data key="v_sitio">Abrigo del Lago de Tota</data>
+      <data key="v_antiguedad_aprox">1700</data>
+      <data key="v_estado_conservacion">deteriorado</data>
+    </node>
+    <node id="n28">
+      <data key="v_nombre">None</data>
+      <data key="v_activo">false</data>
+      <data key="v_name">P-009</data>
+      <data key="v_tipo">pictograma</data>
+      <data key="v_id">P-009</data>
+      <data key="v_sitio">Lajas de Aquitania</data>
+      <data key="v_antiguedad_aprox">1981</data>
+      <data key="v_estado_conservacion">deteriorado</data>
+    </node>
+    <node id="n29">
+      <data key="v_nombre">None</data>
+      <data key="v_activo">false</data>
+      <data key="v_name">P-010</data>
+      <data key="v_tipo">pictograma</data>
+      <data key="v_id">P-010</data>
+      <data key="v_sitio">Peñas del Morro en Mongua</data>
+      <data key="v_antiguedad_aprox">784</data>
+      <data key="v_estado_conservacion">bueno</data>
+    </node>
+    <node id="n30">
+      <data key="v_nombre">None</data>
+      <data key="v_activo">false</data>
+      <data key="v_name">P-011</data>
+      <data key="v_tipo">pictograma</data>
+      <data key="v_id">P-011</data>
+      <data key="v_sitio">Cueva de la Salina en Socha</data>
+      <data key="v_antiguedad_aprox">1685</data>
+      <data key="v_estado_conservacion">bueno</data>
+    </node>
+    <node id="n31">
+      <data key="v_nombre">None</data>
+      <data key="v_activo">false</data>
+      <data key="v_name">P-012</data>
+      <data key="v_tipo">pictograma</data>
+      <data key="v_id">P-012</data>
+      <data key="v_sitio">Alto de la Cruz en Jericó</data>
+      <data key="v_antiguedad_aprox">913</data>
+      <data key="v_estado_conservacion">regular</data>
+    </node>
+    <node id="n32">
+      <data key="v_nombre">None</data>
+      <data key="v_activo">false</data>
+      <data key="v_name">P-013</data>
+      <data key="v_tipo">pictograma</data>
+      <data key="v_id">P-013</data>
+      <data key="v_sitio">Piedras de Belén</data>
+      <data key="v_antiguedad_aprox">2357</data>
+      <data key="v_estado_conservacion">deteriorado</data>
+    </node>
+    <node id="n33">
+      <data key="v_nombre">None</data>
+      <data key="v_activo">false</data>
+      <data key="v_name">P-014</data>
+      <data key="v_tipo">pictograma</data>
+      <data key="v_id">P-014</data>
+      <data key="v_sitio">Abrigos de Villa de Leyva</data>
+      <data key="v_antiguedad_aprox">1166</data>
+      <data key="v_estado_conservacion">regular</data>
+    </node>
+    <node id="n34">
+      <data key="v_nombre">None</data>
+      <data key="v_activo">false</data>
+      <data key="v_name">P-015</data>
+      <data key="v_tipo">pictograma</data>
+      <data key="v_id">P-015</data>
+      <data key="v_sitio">Cerro del Cacique en Duitama</data>
+      <data key="v_antiguedad_aprox">1358</data>
+      <data key="v_estado_conservacion">deteriorado</data>
+    </node>
+    <edge source="n12" target="n24">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.73</data>
+      <data key="e_tipos_aporte">georeferencia</data>
+    </edge>
+    <edge source="n12" target="n28">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.29</data>
+      <data key="e_tipos_aporte">georeferencia</data>
+    </edge>
+    <edge source="n12" target="n30">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.61</data>
+      <data key="e_tipos_aporte">interpretacion</data>
+    </edge>
+    <edge source="n12" target="n34">
+      <data key="e_peso">2</data>
+      <data key="e_confianza_promedio">0.22</data>
+      <data key="e_tipos_aporte">interpretacion,transcripcion</data>
+    </edge>
+    <edge source="n19" target="n21">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.28</data>
+      <data key="e_tipos_aporte">georeferencia</data>
+    </edge>
+    <edge source="n19" target="n23">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.25</data>
+      <data key="e_tipos_aporte">georeferencia</data>
+    </edge>
+    <edge source="n19" target="n33">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.92</data>
+      <data key="e_tipos_aporte">transcripcion</data>
+    </edge>
+    <edge source="n2" target="n25">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.3</data>
+      <data key="e_tipos_aporte">interpretacion</data>
+    </edge>
+    <edge source="n2" target="n27">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.73</data>
+      <data key="e_tipos_aporte">interpretacion</data>
+    </edge>
+    <edge source="n2" target="n29">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.76</data>
+      <data key="e_tipos_aporte">interpretacion</data>
+    </edge>
+    <edge source="n2" target="n31">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.16</data>
+      <data key="e_tipos_aporte">imagen</data>
+    </edge>
+    <edge source="n2" target="n32">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.66</data>
+      <data key="e_tipos_aporte">imagen</data>
+    </edge>
+    <edge source="n2" target="n33">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.16</data>
+      <data key="e_tipos_aporte">imagen</data>
+    </edge>
+    <edge source="n3" target="n20">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.88</data>
+      <data key="e_tipos_aporte">georeferencia</data>
+    </edge>
+    <edge source="n3" target="n25">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.77</data>
+      <data key="e_tipos_aporte">transcripcion</data>
+    </edge>
+    <edge source="n3" target="n26">
+      <data key="e_peso">2</data>
+      <data key="e_confianza_promedio">0.21</data>
+      <data key="e_tipos_aporte">interpretacion,transcripcion</data>
+    </edge>
+    <edge source="n3" target="n32">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.82</data>
+      <data key="e_tipos_aporte">interpretacion</data>
+    </edge>
+    <edge source="n11" target="n31">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.99</data>
+      <data key="e_tipos_aporte">transcripcion</data>
+    </edge>
+    <edge source="n11" target="n34">
+      <data key="e_peso">2</data>
+      <data key="e_confianza_promedio">0.34</data>
+      <data key="e_tipos_aporte">interpretacion</data>
+    </edge>
+    <edge source="n14" target="n25">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.12</data>
+      <data key="e_tipos_aporte">interpretacion</data>
+    </edge>
+    <edge source="n14" target="n28">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.75</data>
+      <data key="e_tipos_aporte">imagen</data>
+    </edge>
+    <edge source="n14" target="n33">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.99</data>
+      <data key="e_tipos_aporte">georeferencia</data>
+    </edge>
+    <edge source="n14" target="n34">
+      <data key="e_peso">2</data>
+      <data key="e_confianza_promedio">0.325</data>
+      <data key="e_tipos_aporte">transcripcion</data>
+    </edge>
+    <edge source="n18" target="n21">
+      <data key="e_peso">2</data>
+      <data key="e_confianza_promedio">0.25</data>
+      <data key="e_tipos_aporte">interpretacion,transcripcion</data>
+    </edge>
+    <edge source="n18" target="n26">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.56</data>
+      <data key="e_tipos_aporte">interpretacion</data>
+    </edge>
+    <edge source="n18" target="n29">
+      <data key="e_peso">2</data>
+      <data key="e_confianza_promedio">0.515</data>
+      <data key="e_tipos_aporte">georeferencia,interpretacion</data>
+    </edge>
+    <edge source="n18" target="n34">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.69</data>
+      <data key="e_tipos_aporte">georeferencia</data>
+    </edge>
+    <edge source="n16" target="n20">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.19</data>
+      <data key="e_tipos_aporte">georeferencia</data>
+    </edge>
+    <edge source="n16" target="n24">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.46</data>
+      <data key="e_tipos_aporte">transcripcion</data>
+    </edge>
+    <edge source="n16" target="n27">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.21</data>
+      <data key="e_tipos_aporte">interpretacion</data>
+    </edge>
+    <edge source="n16" target="n30">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.84</data>
+      <data key="e_tipos_aporte">georeferencia</data>
+    </edge>
+    <edge source="n16" target="n34">
+      <data key="e_peso">2</data>
+      <data key="e_confianza_promedio">0.4</data>
+      <data key="e_tipos_aporte">georeferencia</data>
+    </edge>
+    <edge source="n6" target="n20">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.38</data>
+      <data key="e_tipos_aporte">imagen</data>
+    </edge>
+    <edge source="n6" target="n26">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.16</data>
+      <data key="e_tipos_aporte">georeferencia</data>
+    </edge>
+    <edge source="n6" target="n28">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.18</data>
+      <data key="e_tipos_aporte">interpretacion</data>
+    </edge>
+    <edge source="n6" target="n31">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.68</data>
+      <data key="e_tipos_aporte">transcripcion</data>
+    </edge>
+    <edge source="n9" target="n27">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.51</data>
+      <data key="e_tipos_aporte">imagen</data>
+    </edge>
+    <edge source="n9" target="n28">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.7</data>
+      <data key="e_tipos_aporte">interpretacion</data>
+    </edge>
+    <edge source="n4" target="n24">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.6</data>
+      <data key="e_tipos_aporte">imagen</data>
+    </edge>
+    <edge source="n4" target="n28">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.6</data>
+      <data key="e_tipos_aporte">georeferencia</data>
+    </edge>
+    <edge source="n4" target="n30">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.5</data>
+      <data key="e_tipos_aporte">interpretacion</data>
+    </edge>
+    <edge source="n4" target="n32">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.9</data>
+      <data key="e_tipos_aporte">georeferencia</data>
+    </edge>
+    <edge source="n8" target="n24">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.41</data>
+      <data key="e_tipos_aporte">interpretacion</data>
+    </edge>
+    <edge source="n8" target="n25">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.98</data>
+      <data key="e_tipos_aporte">transcripcion</data>
+    </edge>
+    <edge source="n8" target="n27">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.83</data>
+      <data key="e_tipos_aporte">imagen</data>
+    </edge>
+    <edge source="n8" target="n28">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.15</data>
+      <data key="e_tipos_aporte">georeferencia</data>
+    </edge>
+    <edge source="n7" target="n22">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.29</data>
+      <data key="e_tipos_aporte">transcripcion</data>
+    </edge>
+    <edge source="n7" target="n23">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.48</data>
+      <data key="e_tipos_aporte">transcripcion</data>
+    </edge>
+    <edge source="n7" target="n26">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.64</data>
+      <data key="e_tipos_aporte">interpretacion</data>
+    </edge>
+    <edge source="n7" target="n30">
+      <data key="e_peso">2</data>
+      <data key="e_confianza_promedio">0.56</data>
+      <data key="e_tipos_aporte">imagen,interpretacion</data>
+    </edge>
+    <edge source="n7" target="n31">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.63</data>
+      <data key="e_tipos_aporte">georeferencia</data>
+    </edge>
+    <edge source="n7" target="n33">
+      <data key="e_peso">2</data>
+      <data key="e_confianza_promedio">0.46</data>
+      <data key="e_tipos_aporte">georeferencia,interpretacion</data>
+    </edge>
+    <edge source="n17" target="n21">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.93</data>
+      <data key="e_tipos_aporte">imagen</data>
+    </edge>
+    <edge source="n17" target="n22">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.94</data>
+      <data key="e_tipos_aporte">transcripcion</data>
+    </edge>
+    <edge source="n17" target="n25">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.97</data>
+      <data key="e_tipos_aporte">imagen</data>
+    </edge>
+    <edge source="n17" target="n30">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.27</data>
+      <data key="e_tipos_aporte">transcripcion</data>
+    </edge>
+    <edge source="n17" target="n32">
+      <data key="e_peso">2</data>
+      <data key="e_confianza_promedio">0.445</data>
+      <data key="e_tipos_aporte">georeferencia,interpretacion</data>
+    </edge>
+    <edge source="n1" target="n29">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.96</data>
+      <data key="e_tipos_aporte">interpretacion</data>
+    </edge>
+    <edge source="n1" target="n33">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.31</data>
+      <data key="e_tipos_aporte">imagen</data>
+    </edge>
+    <edge source="n1" target="n34">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.32</data>
+      <data key="e_tipos_aporte">interpretacion</data>
+    </edge>
+    <edge source="n10" target="n23">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.7</data>
+      <data key="e_tipos_aporte">transcripcion</data>
+    </edge>
+    <edge source="n10" target="n26">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.92</data>
+      <data key="e_tipos_aporte">imagen</data>
+    </edge>
+    <edge source="n10" target="n29">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.91</data>
+      <data key="e_tipos_aporte">imagen</data>
+    </edge>
+    <edge source="n10" target="n32">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.24</data>
+      <data key="e_tipos_aporte">interpretacion</data>
+    </edge>
+    <edge source="n13" target="n20">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.49</data>
+      <data key="e_tipos_aporte">interpretacion</data>
+    </edge>
+    <edge source="n13" target="n22">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.91</data>
+      <data key="e_tipos_aporte">georeferencia</data>
+    </edge>
+    <edge source="n13" target="n23">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.49</data>
+      <data key="e_tipos_aporte">imagen</data>
+    </edge>
+    <edge source="n13" target="n26">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.69</data>
+      <data key="e_tipos_aporte">imagen</data>
+    </edge>
+    <edge source="n13" target="n28">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.95</data>
+      <data key="e_tipos_aporte">imagen</data>
+    </edge>
+    <edge source="n13" target="n29">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.64</data>
+      <data key="e_tipos_aporte">transcripcion</data>
+    </edge>
+    <edge source="n13" target="n33">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.4</data>
+      <data key="e_tipos_aporte">imagen</data>
+    </edge>
+    <edge source="n0" target="n20">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.86</data>
+      <data key="e_tipos_aporte">transcripcion</data>
+    </edge>
+    <edge source="n15" target="n23">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.94</data>
+      <data key="e_tipos_aporte">interpretacion</data>
+    </edge>
+    <edge source="n15" target="n26">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.72</data>
+      <data key="e_tipos_aporte">interpretacion</data>
+    </edge>
+    <edge source="n15" target="n30">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.17</data>
+      <data key="e_tipos_aporte">georeferencia</data>
+    </edge>
+    <edge source="n5" target="n27">
+      <data key="e_peso">2</data>
+      <data key="e_confianza_promedio">0.755</data>
+      <data key="e_tipos_aporte">georeferencia</data>
+    </edge>
+    <edge source="n5" target="n29">
+      <data key="e_peso">1</data>
+      <data key="e_confianza_promedio">0.64</data>
+      <data key="e_tipos_aporte">imagen</data>
+    </edge>
+  </graph>
+</graphml>

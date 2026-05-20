@@ -1,0 +1,746 @@
+[
+  {
+    "municipio_nombre": "Chiquinquirá",
+    "pictograma_id": "P-010",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_646",
+    "fecha": "2024-10-12",
+    "confianza": 0.76
+  },
+  {
+    "municipio_nombre": "Villa de Leyva",
+    "pictograma_id": "P-008",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_755",
+    "fecha": "2024-01-24",
+    "confianza": 0.72
+  },
+  {
+    "municipio_nombre": "Samacá",
+    "pictograma_id": "P-011",
+    "tipo_aporte": "imagen",
+    "usuario_id": "u_334",
+    "fecha": "2023-11-29",
+    "confianza": 0.84
+  },
+  {
+    "municipio_nombre": "Tibasosa",
+    "pictograma_id": "P-007",
+    "tipo_aporte": "imagen",
+    "usuario_id": "u_316",
+    "fecha": "2023-10-02",
+    "confianza": 0.92
+  },
+  {
+    "municipio_nombre": "Jericó",
+    "pictograma_id": "P-015",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_317",
+    "fecha": "2025-01-05",
+    "confianza": 0.69
+  },
+  {
+    "municipio_nombre": "Aquitania",
+    "pictograma_id": "P-015",
+    "tipo_aporte": "transcripcion",
+    "usuario_id": "u_246",
+    "fecha": "2024-10-20",
+    "confianza": 0.34
+  },
+  {
+    "municipio_nombre": "Samacá",
+    "pictograma_id": "P-012",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_864",
+    "fecha": "2024-07-28",
+    "confianza": 0.63
+  },
+  {
+    "municipio_nombre": "Jericó",
+    "pictograma_id": "P-007",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_241",
+    "fecha": "2024-01-06",
+    "confianza": 0.56
+  },
+  {
+    "municipio_nombre": "Chiquinquirá",
+    "pictograma_id": "P-013",
+    "tipo_aporte": "imagen",
+    "usuario_id": "u_256",
+    "fecha": "2023-02-18",
+    "confianza": 0.66
+  },
+  {
+    "municipio_nombre": "Tota",
+    "pictograma_id": "P-010",
+    "tipo_aporte": "transcripcion",
+    "usuario_id": "u_490",
+    "fecha": "2023-03-07",
+    "confianza": 0.64
+  },
+  {
+    "municipio_nombre": "Gámeza",
+    "pictograma_id": "P-009",
+    "tipo_aporte": "imagen",
+    "usuario_id": "u_796",
+    "fecha": "2023-09-15",
+    "confianza": 0.75
+  },
+  {
+    "municipio_nombre": "Socha",
+    "pictograma_id": "P-013",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_214",
+    "fecha": "2023-10-01",
+    "confianza": 0.36
+  },
+  {
+    "municipio_nombre": "Villa de Leyva",
+    "pictograma_id": "P-008",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_612",
+    "fecha": "2023-01-04",
+    "confianza": 0.79
+  },
+  {
+    "municipio_nombre": "Mongua",
+    "pictograma_id": "P-015",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_961",
+    "fecha": "2023-04-19",
+    "confianza": 0.68
+  },
+  {
+    "municipio_nombre": "Belén",
+    "pictograma_id": "P-004",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_880",
+    "fecha": "2023-06-06",
+    "confianza": 0.25
+  },
+  {
+    "municipio_nombre": "Mongua",
+    "pictograma_id": "P-015",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_600",
+    "fecha": "2023-01-01",
+    "confianza": 0.12
+  },
+  {
+    "municipio_nombre": "Firavitoba",
+    "pictograma_id": "P-015",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_159",
+    "fecha": "2023-11-11",
+    "confianza": 0.32
+  },
+  {
+    "municipio_nombre": "Jericó",
+    "pictograma_id": "P-002",
+    "tipo_aporte": "transcripcion",
+    "usuario_id": "u_935",
+    "fecha": "2023-03-29",
+    "confianza": 0.16
+  },
+  {
+    "municipio_nombre": "Socha",
+    "pictograma_id": "P-013",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_775",
+    "fecha": "2023-05-09",
+    "confianza": 0.53
+  },
+  {
+    "municipio_nombre": "Socha",
+    "pictograma_id": "P-003",
+    "tipo_aporte": "transcripcion",
+    "usuario_id": "u_316",
+    "fecha": "2023-09-29",
+    "confianza": 0.94
+  },
+  {
+    "municipio_nombre": "Moniquirá",
+    "pictograma_id": "P-012",
+    "tipo_aporte": "transcripcion",
+    "usuario_id": "u_787",
+    "fecha": "2023-11-16",
+    "confianza": 0.68
+  },
+  {
+    "municipio_nombre": "Gámeza",
+    "pictograma_id": "P-015",
+    "tipo_aporte": "transcripcion",
+    "usuario_id": "u_223",
+    "fecha": "2024-06-13",
+    "confianza": 0.32
+  },
+  {
+    "municipio_nombre": "Chiquinquirá",
+    "pictograma_id": "P-006",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_702",
+    "fecha": "2023-01-22",
+    "confianza": 0.3
+  },
+  {
+    "municipio_nombre": "Chiquinquirá",
+    "pictograma_id": "P-012",
+    "tipo_aporte": "imagen",
+    "usuario_id": "u_334",
+    "fecha": "2024-10-08",
+    "confianza": 0.16
+  },
+  {
+    "municipio_nombre": "Sogamoso",
+    "pictograma_id": "P-014",
+    "tipo_aporte": "imagen",
+    "usuario_id": "u_626",
+    "fecha": "2023-12-05",
+    "confianza": 0.31
+  },
+  {
+    "municipio_nombre": "Tópaga",
+    "pictograma_id": "P-004",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_840",
+    "fecha": "2024-07-06",
+    "confianza": 0.94
+  },
+  {
+    "municipio_nombre": "Jericó",
+    "pictograma_id": "P-010",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_903",
+    "fecha": "2024-04-29",
+    "confianza": 0.53
+  },
+  {
+    "municipio_nombre": "Tota",
+    "pictograma_id": "P-004",
+    "tipo_aporte": "imagen",
+    "usuario_id": "u_774",
+    "fecha": "2023-04-07",
+    "confianza": 0.49
+  },
+  {
+    "municipio_nombre": "Tota",
+    "pictograma_id": "P-007",
+    "tipo_aporte": "imagen",
+    "usuario_id": "u_789",
+    "fecha": "2024-04-23",
+    "confianza": 0.69
+  },
+  {
+    "municipio_nombre": "Duitama",
+    "pictograma_id": "P-001",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_919",
+    "fecha": "2024-02-17",
+    "confianza": 0.88
+  },
+  {
+    "municipio_nombre": "Samacá",
+    "pictograma_id": "P-004",
+    "tipo_aporte": "transcripcion",
+    "usuario_id": "u_243",
+    "fecha": "2023-07-14",
+    "confianza": 0.48
+  },
+  {
+    "municipio_nombre": "Ráquira",
+    "pictograma_id": "P-008",
+    "tipo_aporte": "imagen",
+    "usuario_id": "u_553",
+    "fecha": "2023-09-13",
+    "confianza": 0.83
+  },
+  {
+    "municipio_nombre": "Socha",
+    "pictograma_id": "P-002",
+    "tipo_aporte": "imagen",
+    "usuario_id": "u_195",
+    "fecha": "2023-02-21",
+    "confianza": 0.93
+  },
+  {
+    "municipio_nombre": "Samacá",
+    "pictograma_id": "P-003",
+    "tipo_aporte": "transcripcion",
+    "usuario_id": "u_592",
+    "fecha": "2024-02-21",
+    "confianza": 0.29
+  },
+  {
+    "municipio_nombre": "Aquitania",
+    "pictograma_id": "P-015",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_488",
+    "fecha": "2023-03-02",
+    "confianza": 0.1
+  },
+  {
+    "municipio_nombre": "Aquitania",
+    "pictograma_id": "P-005",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_533",
+    "fecha": "2024-04-10",
+    "confianza": 0.73
+  },
+  {
+    "municipio_nombre": "Socha",
+    "pictograma_id": "P-011",
+    "tipo_aporte": "transcripcion",
+    "usuario_id": "u_258",
+    "fecha": "2025-01-05",
+    "confianza": 0.27
+  },
+  {
+    "municipio_nombre": "Moniquirá",
+    "pictograma_id": "P-001",
+    "tipo_aporte": "imagen",
+    "usuario_id": "u_865",
+    "fecha": "2024-08-16",
+    "confianza": 0.38
+  },
+  {
+    "municipio_nombre": "Sogamoso",
+    "pictograma_id": "P-010",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_158",
+    "fecha": "2024-05-03",
+    "confianza": 0.96
+  },
+  {
+    "municipio_nombre": "Chiquinquirá",
+    "pictograma_id": "P-014",
+    "tipo_aporte": "imagen",
+    "usuario_id": "u_709",
+    "fecha": "2023-07-10",
+    "confianza": 0.16
+  },
+  {
+    "municipio_nombre": "Samacá",
+    "pictograma_id": "P-007",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_692",
+    "fecha": "2023-05-03",
+    "confianza": 0.64
+  },
+  {
+    "municipio_nombre": "Belén",
+    "pictograma_id": "P-002",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_367",
+    "fecha": "2024-03-05",
+    "confianza": 0.28
+  },
+  {
+    "municipio_nombre": "Tibasosa",
+    "pictograma_id": "P-004",
+    "tipo_aporte": "transcripcion",
+    "usuario_id": "u_234",
+    "fecha": "2023-09-29",
+    "confianza": 0.7
+  },
+  {
+    "municipio_nombre": "Nobsa",
+    "pictograma_id": "P-008",
+    "tipo_aporte": "imagen",
+    "usuario_id": "u_109",
+    "fecha": "2023-11-20",
+    "confianza": 0.51
+  },
+  {
+    "municipio_nombre": "Jericó",
+    "pictograma_id": "P-002",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_618",
+    "fecha": "2023-03-17",
+    "confianza": 0.34
+  },
+  {
+    "municipio_nombre": "Firavitoba",
+    "pictograma_id": "P-015",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_478",
+    "fecha": "2023-03-12",
+    "confianza": 0.36
+  },
+  {
+    "municipio_nombre": "Gámeza",
+    "pictograma_id": "P-014",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_726",
+    "fecha": "2024-07-10",
+    "confianza": 0.99
+  },
+  {
+    "municipio_nombre": "Mongua",
+    "pictograma_id": "P-001",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_779",
+    "fecha": "2024-11-14",
+    "confianza": 0.19
+  },
+  {
+    "municipio_nombre": "Paipa",
+    "pictograma_id": "P-005",
+    "tipo_aporte": "imagen",
+    "usuario_id": "u_860",
+    "fecha": "2023-04-29",
+    "confianza": 0.6
+  },
+  {
+    "municipio_nombre": "Ráquira",
+    "pictograma_id": "P-005",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_834",
+    "fecha": "2024-09-11",
+    "confianza": 0.41
+  },
+  {
+    "municipio_nombre": "Ráquira",
+    "pictograma_id": "P-009",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_966",
+    "fecha": "2024-05-15",
+    "confianza": 0.15
+  },
+  {
+    "municipio_nombre": "Tota",
+    "pictograma_id": "P-014",
+    "tipo_aporte": "imagen",
+    "usuario_id": "u_103",
+    "fecha": "2023-10-11",
+    "confianza": 0.4
+  },
+  {
+    "municipio_nombre": "Paipa",
+    "pictograma_id": "P-011",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_859",
+    "fecha": "2023-09-26",
+    "confianza": 0.5
+  },
+  {
+    "municipio_nombre": "Tota",
+    "pictograma_id": "P-009",
+    "tipo_aporte": "imagen",
+    "usuario_id": "u_177",
+    "fecha": "2023-01-10",
+    "confianza": 0.95
+  },
+  {
+    "municipio_nombre": "Paipa",
+    "pictograma_id": "P-009",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_696",
+    "fecha": "2023-02-06",
+    "confianza": 0.6
+  },
+  {
+    "municipio_nombre": "Tota",
+    "pictograma_id": "P-003",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_473",
+    "fecha": "2023-02-12",
+    "confianza": 0.91
+  },
+  {
+    "municipio_nombre": "Sogamoso",
+    "pictograma_id": "P-015",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_798",
+    "fecha": "2024-01-02",
+    "confianza": 0.32
+  },
+  {
+    "municipio_nombre": "Duitama",
+    "pictograma_id": "P-006",
+    "tipo_aporte": "transcripcion",
+    "usuario_id": "u_735",
+    "fecha": "2024-07-27",
+    "confianza": 0.77
+  },
+  {
+    "municipio_nombre": "Samacá",
+    "pictograma_id": "P-014",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_522",
+    "fecha": "2023-06-16",
+    "confianza": 0.12
+  },
+  {
+    "municipio_nombre": "Tibasosa",
+    "pictograma_id": "P-013",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_373",
+    "fecha": "2024-02-26",
+    "confianza": 0.24
+  },
+  {
+    "municipio_nombre": "Duitama",
+    "pictograma_id": "P-007",
+    "tipo_aporte": "transcripcion",
+    "usuario_id": "u_327",
+    "fecha": "2023-02-09",
+    "confianza": 0.28
+  },
+  {
+    "municipio_nombre": "Gámeza",
+    "pictograma_id": "P-006",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_328",
+    "fecha": "2023-11-09",
+    "confianza": 0.12
+  },
+  {
+    "municipio_nombre": "Moniquirá",
+    "pictograma_id": "P-007",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_985",
+    "fecha": "2023-12-03",
+    "confianza": 0.16
+  },
+  {
+    "municipio_nombre": "Ráquira",
+    "pictograma_id": "P-006",
+    "tipo_aporte": "transcripcion",
+    "usuario_id": "u_795",
+    "fecha": "2024-10-18",
+    "confianza": 0.98
+  },
+  {
+    "municipio_nombre": "Socha",
+    "pictograma_id": "P-006",
+    "tipo_aporte": "imagen",
+    "usuario_id": "u_998",
+    "fecha": "2023-01-29",
+    "confianza": 0.97
+  },
+  {
+    "municipio_nombre": "Villa de Leyva",
+    "pictograma_id": "P-010",
+    "tipo_aporte": "imagen",
+    "usuario_id": "u_211",
+    "fecha": "2023-09-29",
+    "confianza": 0.64
+  },
+  {
+    "municipio_nombre": "Firavitoba",
+    "pictograma_id": "P-012",
+    "tipo_aporte": "transcripcion",
+    "usuario_id": "u_720",
+    "fecha": "2023-11-18",
+    "confianza": 0.99
+  },
+  {
+    "municipio_nombre": "Duitama",
+    "pictograma_id": "P-007",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_360",
+    "fecha": "2024-08-13",
+    "confianza": 0.14
+  },
+  {
+    "municipio_nombre": "Tota",
+    "pictograma_id": "P-001",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_472",
+    "fecha": "2024-06-16",
+    "confianza": 0.49
+  },
+  {
+    "municipio_nombre": "Tibasosa",
+    "pictograma_id": "P-010",
+    "tipo_aporte": "imagen",
+    "usuario_id": "u_837",
+    "fecha": "2023-11-18",
+    "confianza": 0.91
+  },
+  {
+    "municipio_nombre": "Mongua",
+    "pictograma_id": "P-005",
+    "tipo_aporte": "transcripcion",
+    "usuario_id": "u_434",
+    "fecha": "2024-11-13",
+    "confianza": 0.46
+  },
+  {
+    "municipio_nombre": "Nobsa",
+    "pictograma_id": "P-009",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_530",
+    "fecha": "2023-05-11",
+    "confianza": 0.7
+  },
+  {
+    "municipio_nombre": "Aquitania",
+    "pictograma_id": "P-011",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_730",
+    "fecha": "2025-02-05",
+    "confianza": 0.61
+  },
+  {
+    "municipio_nombre": "Aquitania",
+    "pictograma_id": "P-009",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_393",
+    "fecha": "2023-01-01",
+    "confianza": 0.29
+  },
+  {
+    "municipio_nombre": "Jericó",
+    "pictograma_id": "P-010",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_576",
+    "fecha": "2024-11-01",
+    "confianza": 0.5
+  },
+  {
+    "municipio_nombre": "Moniquirá",
+    "pictograma_id": "P-009",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_774",
+    "fecha": "2024-04-29",
+    "confianza": 0.18
+  },
+  {
+    "municipio_nombre": "Mongua",
+    "pictograma_id": "P-011",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_195",
+    "fecha": "2024-10-10",
+    "confianza": 0.84
+  },
+  {
+    "municipio_nombre": "Samacá",
+    "pictograma_id": "P-011",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_925",
+    "fecha": "2023-11-14",
+    "confianza": 0.28
+  },
+  {
+    "municipio_nombre": "Tunja",
+    "pictograma_id": "P-001",
+    "tipo_aporte": "transcripcion",
+    "usuario_id": "u_725",
+    "fecha": "2023-09-08",
+    "confianza": 0.86
+  },
+  {
+    "municipio_nombre": "Chiquinquirá",
+    "pictograma_id": "P-008",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_835",
+    "fecha": "2024-02-29",
+    "confianza": 0.73
+  },
+  {
+    "municipio_nombre": "Tópaga",
+    "pictograma_id": "P-007",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_771",
+    "fecha": "2023-09-07",
+    "confianza": 0.72
+  },
+  {
+    "municipio_nombre": "Duitama",
+    "pictograma_id": "P-013",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_280",
+    "fecha": "2024-03-11",
+    "confianza": 0.82
+  },
+  {
+    "municipio_nombre": "Mongua",
+    "pictograma_id": "P-008",
+    "tipo_aporte": "interpretacion",
+    "usuario_id": "u_968",
+    "fecha": "2023-02-21",
+    "confianza": 0.21
+  },
+  {
+    "municipio_nombre": "Paipa",
+    "pictograma_id": "P-013",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_873",
+    "fecha": "2024-04-20",
+    "confianza": 0.9
+  },
+  {
+    "municipio_nombre": "Belén",
+    "pictograma_id": "P-014",
+    "tipo_aporte": "transcripcion",
+    "usuario_id": "u_950",
+    "fecha": "2025-01-06",
+    "confianza": 0.92
+  },
+  {
+    "municipio_nombre": "Gámeza",
+    "pictograma_id": "P-015",
+    "tipo_aporte": "transcripcion",
+    "usuario_id": "u_560",
+    "fecha": "2023-06-12",
+    "confianza": 0.33
+  },
+  {
+    "municipio_nombre": "Samacá",
+    "pictograma_id": "P-014",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_884",
+    "fecha": "2024-10-14",
+    "confianza": 0.8
+  },
+  {
+    "municipio_nombre": "Tópaga",
+    "pictograma_id": "P-011",
+    "tipo_aporte": "georeferencia",
+    "usuario_id": "u_550",
+    "fecha": "2023-09-02",
+    "confianza": 0.17
+  },
+  {
+    "municipio_nombre": "Tunja",
+    "pictograma_id": "P-001",
+    "tipo_aporte": "imagen",
+    "confianza": 0.9,
+    "fecha": "2026-05-18",
+    "usuario_id": "u_mpbjzjti"
+  },
+  {
+    "municipio_nombre": "Firavitoba",
+    "pictograma_id": "P-003",
+    "tipo_aporte": "interpretacion",
+    "confianza": 0.8,
+    "fecha": "2026-05-18",
+    "usuario_id": "u_mpbkd6ve"
+  },
+  {
+    "municipio_nombre": "Tunja",
+    "pictograma_id": "P-MPBKEC47",
+    "tipo_aporte": "imagen",
+    "confianza": 0.8,
+    "fecha": "2026-05-19",
+    "usuario_id": "u_mpc1ilfb"
+  },
+  {
+    "municipio_nombre": "Sogamoso",
+    "pictograma_id": "P-MPBKEC47",
+    "tipo_aporte": "imagen",
+    "confianza": 0.8,
+    "fecha": "2026-05-19",
+    "usuario_id": "u_mpc1iuya"
+  },
+  {
+    "municipio_nombre": "Firavitoba",
+    "pictograma_id": "P-MPBKEC47",
+    "tipo_aporte": "transcripcion",
+    "confianza": 0.8,
+    "fecha": "2026-05-19",
+    "usuario_id": "u_mpc1jiqx"
+  }
+]
