@@ -28,13 +28,3 @@ Para detener: `Ctrl+C`
 3. **Tab Matriz** — vista de adyacencia de las conexiones actuales.
 
 En el grafo puedes hacer clic en cualquier nodo para ver sus métricas (PageRank, grado, población) y sus conexiones.
-
----
-
-## Solución de problemas
-
-| Problema | Solución |
-|---|---|
-| Puerto 5000 ocupado | Cambia `PORT` en `server/realtime_server.js` y `run_realtime.py` |
-| `UnicodeEncodeError` en Windows | Ejecuta `$env:PYTHONIOENCODING='utf-8'; python run_realtime.py` |
-| npm no encontrado | Instala Node.js y reinicia la terminal |
