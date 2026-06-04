@@ -42,7 +42,7 @@ export default function ImageUpload() {
       <div className="mt-2 flex gap-2">
         <label className="py-2 px-3 bg-white rounded-md shadow cursor-pointer">
           Seleccionar
-n          <input onChange={onFile} type="file" accept="image/png, image/jpeg" className="hidden" />
+          <input onChange={onFile} type="file" accept="image/png, image/jpeg" className="hidden" />
         </label>
         <button
           onClick={() => upload(preview)}

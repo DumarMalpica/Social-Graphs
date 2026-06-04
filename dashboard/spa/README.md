@@ -1,20 +1,5 @@
-# Rupestre SPA (Pictograma)
+# Dashboard SPA
 
-This is a Vite + React + TypeScript SPA for the Pictograma dashboard.
+Interfaz principal del proyecto. Se sirve automáticamente desde el servidor Node.js en `http://localhost:5000`.
 
-Quick start:
-
-```bash
-cd dashboard/spa
-npm install
-npm run dev
-```
-
-To build for production:
-
-```bash
-npm run build
-# Copy contents of dist to the server static folder or configure server to serve build output
-```
-
-The SPA connects to the backend WebSocket at `ws://localhost:3000` by default.
+Para ejecutar el proyecto completo ve al README raíz y corre `python run_realtime.py`.

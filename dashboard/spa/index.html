@@ -212,9 +212,19 @@
 
           <div>
             <label class="block text-xs font-medium text-slate-600 mb-1.5">Pictograma</label>
-            <select id="new-pictograma" class="w-full text-sm px-3 py-2.5 border border-slate-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-200 transition">
+            <select id="new-pictograma" onchange="onPicSelect(this.value)"
+                    class="w-full text-sm px-3 py-2.5 border border-slate-200 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-indigo-200 transition">
               <option value="">Seleccionar pictograma...</option>
             </select>
+            <!-- Info card shown when a pictogram is selected -->
+            <div id="pic-info" class="hidden mt-2 px-3 py-2.5 bg-slate-50 border border-slate-100 rounded-xl text-xs space-y-1.5">
+              <div class="flex items-center gap-2 flex-wrap">
+                <span id="pic-tipo-badge" class="px-2 py-0.5 rounded-full bg-white border border-slate-200 text-slate-600 font-medium"></span>
+                <span id="pic-estado-badge" class="px-2 py-0.5 rounded-full bg-white border border-slate-200 text-slate-500"></span>
+                <span id="pic-edad" class="text-slate-400"></span>
+              </div>
+              <div id="pic-muns-line" class="text-slate-500 leading-tight"></div>
+            </div>
           </div>
 
           <div class="grid grid-cols-2 gap-2">
@@ -342,8 +352,8 @@
       <!-- Threshold slider -->
       <div class="flex items-center gap-2 flex-none">
         <label class="text-xs text-slate-500">Umbral:</label>
-        <input type="range" id="edge-threshold" min="1" max="8" value="2" class="w-20" oninput="onThreshold(this.value)">
-        <span id="threshold-label" class="text-xs text-slate-500 w-4">2</span>
+        <input type="range" id="edge-threshold" min="1" max="8" value="1" class="w-20" oninput="onThreshold(this.value)">
+        <span id="threshold-label" class="text-xs text-slate-500 w-4">1</span>
       </div>
 
       <div class="flex-1 min-w-0"></div>
@@ -454,7 +464,8 @@
 const APP = {
   cy: null, socket: null,
   municipios: [], pictogramas: [], aportes: [],
-  uploadedFile: null, threshold: 2, activeTab: 'upload',
+  allEdges: [],
+  uploadedFile: null, threshold: 1, activeTab: 'upload',
 };
 window.cy = null; // exposed for inline button handlers
 
@@ -642,7 +653,7 @@ function dedupe(edges) {
 }
 
 // Keep at most maxPerNode strongest edges per node to avoid visual saturation.
-function pruneEdges(edges, maxPerNode = 6) {
+function pruneEdges(edges, maxPerNode = 4) {
   if (!edges.length) return edges;
   const nodeRank = new Map(); // node → sorted edge list
   edges.forEach(e => {
@@ -680,11 +691,13 @@ function fallbackNode(name, i) {
 // ────────────────────────────────────────────────────────────────
 function renderGraph(nodes, edges) {
   const cy = APP.cy;
-  const pruned = pruneEdges(edges);          // cap connections per node
+  const pruned = pruneEdges(edges);
+  APP.allEdges = pruned;
   cy.batch(() => {
     cy.elements().remove();
     cy.add(nodes);
-    cy.add(pruned.filter(e => (e.data.weight||1) >= APP.threshold));
+    cy.add(pruned);
+    cy.edges().forEach(e => { if ((e.data('weight')||1) < APP.threshold) e.hide(); });
   });
   hideOverlay();
   applyLayout('fcose');
@@ -746,20 +759,36 @@ function applyLayout(name) {
 function onNewConn(data) {
   const cy = APP.cy;
   const { source, target, peso = 1 } = data;
-  if (!cy.getElementById(source).length || !cy.getElementById(target).length) return;
+
+  // Add missing nodes dynamically if not in graph
+  [source, target].forEach(name => {
+    if (!cy.getElementById(name).length) {
+      const angle = Math.random() * 2 * Math.PI;
+      cy.add({
+        data: { id: name, label: name, pagerank: 0.02, degree: 1, betweenness: 0,
+                population: 0, color: '#94a3b8', sz: 26 },
+        position: { x: 400 + 250 * Math.cos(angle), y: 300 + 200 * Math.sin(angle) },
+      });
+    }
+  });
 
   const k  = [source, target].sort().join('||');
   const ex = cy.edges().filter(e => [e.data('source'),e.data('target')].sort().join('||') === k);
 
   if (ex.length) {
-    ex.first().data({ weight: peso, w: Math.max(1,Math.min(5,peso)) });
+    const w = Math.max(1, Math.min(5, peso));
+    ex.first().data({ weight: peso, w });
+    ex.first().show();
     ex.first().addClass('hl');
     setTimeout(() => ex.first().removeClass('hl'), 2200);
   } else {
-    const el = cy.add({ data:{ id:`e_${k}_${Date.now()}`, source, target, weight:peso, w:Math.max(1,Math.min(5,peso)) } });
+    const w = Math.max(1, Math.min(5, peso));
+    const el = cy.add({ data: { id: `e_${k}`, source, target, weight: peso, w } });
     el.addClass('new');
-    setTimeout(() => el.removeClass('new'), 2500);
-    applyLayout('fcose');
+    setTimeout(() => {
+      el.removeClass('new');
+      if (peso < APP.threshold) el.hide();
+    }, 2500);
   }
 
   updateStats(); updateCounts();
@@ -794,14 +823,22 @@ async function addAporte() {
       const res = await r.json();
       APP.aportes.unshift(ap);
       renderAportesList();
-      (res.connections||[]).forEach(onNewConn);
-      toast('Aporte registrado', 'success');
+      const conns = res.connections || [];
+      conns.forEach(onNewConn);
+      pulseNode(municipio);
+      if (conns.length > 0) {
+        toast(`✓ ${conns.length} conexión${conns.length > 1 ? 'es' : ''} creada${conns.length > 1 ? 's' : ''} en el grafo`, 'success');
+      } else {
+        const pic = APP.pictogramas.find(p => p.id === picId);
+        toast(`Aporte registrado para ${pic?.sitio || picId}. Agrega otro municipio al mismo pictograma para crear la conexión.`, 'info');
+      }
     } else throw new Error();
   } catch {
     APP.aportes.unshift(ap);
     renderAportesList();
     updateGraphLocal(ap);
-    toast('Aporte guardado (modo local)', 'info');
+    pulseNode(municipio);
+    toast('Aporte guardado (sin servidor)', 'info');
   }
 
   if (APP.socket?.connected)
@@ -809,6 +846,15 @@ async function addAporte() {
 
   document.getElementById('new-municipio').value  = '';
   document.getElementById('new-pictograma').value = '';
+  onPicSelect('');
+}
+
+function pulseNode(nodeId) {
+  const node = APP.cy?.getElementById(nodeId);
+  if (!node?.length) return;
+  node.addClass('hl');
+  setTimeout(() => node.removeClass('hl'), 1800);
+  APP.cy.animate({ center: { eles: node }, zoom: Math.max(APP.cy.zoom(), 1.2) }, { duration: 400 });
 }
 
 function updateGraphLocal(ap) {
@@ -893,9 +939,60 @@ function populateSelects() {
 
   const ps = document.getElementById('new-pictograma');
   APP.pictogramas.forEach(p => {
-    const label = `${p.id} — ${(p.sitio||'').split(' ').slice(0,3).join(' ')}`;
-    ps.insertAdjacentHTML('beforeend', `<option value="${p.id}">${label}</option>`);
+    const sitio = p.sitio || '?';
+    const tipo  = p.tipo  ? ` [${p.tipo}]` : '';
+    ps.insertAdjacentHTML('beforeend', `<option value="${p.id}">${p.id} · ${sitio}${tipo}</option>`);
   });
+}
+
+function onPicSelect(picId) {
+  const card = document.getElementById('pic-info');
+  if (!picId) { card.classList.add('hidden'); return; }
+
+  const pic = APP.pictogramas.find(p => p.id === picId);
+  if (!pic) { card.classList.add('hidden'); return; }
+
+  // Municipalities that already reported this pictogram
+  const muns = [...new Set(APP.aportes
+    .filter(a => a.pictograma_id === picId)
+    .map(a => a.municipio_nombre))];
+
+  const tipoColors = {
+    geométrico: 'bg-sky-100 text-sky-700', antropomorfo: 'bg-violet-100 text-violet-700',
+    zoomorfo: 'bg-emerald-100 text-emerald-700', solar: 'bg-amber-100 text-amber-700',
+    abstracto: 'bg-slate-100 text-slate-600',
+  };
+  const estadoColors = {
+    bueno: 'bg-green-50 text-green-700 border-green-200',
+    regular: 'bg-yellow-50 text-yellow-700 border-yellow-200',
+    deteriorado: 'bg-red-50 text-red-700 border-red-200',
+  };
+
+  document.getElementById('pic-tipo-badge').className =
+    `px-2 py-0.5 rounded-full text-xs font-medium ${tipoColors[pic.tipo] || 'bg-slate-100 text-slate-600'}`;
+  document.getElementById('pic-tipo-badge').textContent = pic.tipo || '—';
+
+  document.getElementById('pic-estado-badge').className =
+    `px-2 py-0.5 rounded-full text-xs border ${estadoColors[pic.estado_conservacion] || 'bg-slate-50 text-slate-500 border-slate-200'}`;
+  document.getElementById('pic-estado-badge').textContent = pic.estado_conservacion || '—';
+
+  document.getElementById('pic-edad').textContent =
+    pic.antiguedad_aprox ? `~${pic.antiguedad_aprox} años` : '';
+
+  if (muns.length === 0) {
+    document.getElementById('pic-muns-line').innerHTML =
+      `<span class="text-indigo-600 font-medium">Ningún municipio lo ha reportado — ¡sé el primero!</span>`;
+  } else {
+    const preview = muns.slice(0, 3).join(', ') + (muns.length > 3 ? ` +${muns.length - 3}` : '');
+    document.getElementById('pic-muns-line').innerHTML =
+      `<span class="text-emerald-700 font-medium">${muns.length} municipio${muns.length > 1 ? 's' : ''} ya lo reportan: </span>`
+      + `<span class="text-slate-600">${preview}</span>`
+      + (muns.length > 0
+          ? `<span class="ml-1 text-emerald-600 font-medium">→ conexión se creará</span>`
+          : '');
+  }
+
+  card.classList.remove('hidden');
 }
 
 const TC = { imagen:'bg-sky-100 text-sky-700', interpretacion:'bg-violet-100 text-violet-700',
@@ -905,6 +1002,9 @@ const TI = { imagen:'🖼', interpretacion:'💭', georeferencia:'📍', transcr
 function renderAportesList() {
   const list = document.getElementById('aportes-list');
   document.getElementById('aporte-count').textContent = `${APP.aportes.length} registros`;
+  // Refresh pictogram info card if one is selected
+  const curPic = document.getElementById('new-pictograma')?.value;
+  if (curPic) onPicSelect(curPic);
 
   if (!APP.aportes.length) {
     list.innerHTML = '<p class="text-xs text-slate-400 py-6 text-center">Sin aportes registrados</p>';

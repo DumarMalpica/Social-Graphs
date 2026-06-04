@@ -9,7 +9,7 @@ const useStore = create((set, get) => ({
   ws: null as WebSocket | null,
   connect: () => {
     if (get().ws) return
-    const ws = new WebSocket('ws://localhost:3000')
+    const ws = new WebSocket('ws://localhost:5000')
     ws.onopen = () => console.log('ws open')
     ws.onmessage = (ev) => {
       try {

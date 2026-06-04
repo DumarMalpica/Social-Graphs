@@ -7,12 +7,12 @@
       "key": "Tunja",
       "attributes": {
         "label": "Tunja",
-        "x": 363.95329982162605,
-        "y": 94.54545454545547,
-        "size": 5.0,
+        "x": 363.953,
+        "y": 94.545,
+        "size": 5,
         "color": "#E1F5EE",
         "pagerank": 0.021064,
-        "betweenness": 0.0,
+        "betweenness": 0,
         "grado": 4,
         "poblacion": 202000
       }
@@ -21,12 +21,12 @@
       "key": "Sogamoso",
       "attributes": {
         "label": "Sogamoso",
-        "x": 716.2315550510722,
-        "y": 424.3636363636374,
-        "size": 14.841998269025622,
+        "x": 716.231,
+        "y": 424.363,
+        "size": 14.84,
         "color": "#76A398",
         "pagerank": 0.045513,
-        "betweenness": 0.0,
+        "betweenness": 0,
         "grado": 11,
         "poblacion": 114000
       }
@@ -35,12 +35,12 @@
       "key": "Chiquinquirá",
       "attributes": {
         "label": "Chiquinquirá",
-        "x": 0.0,
-        "y": 242.54545454545456,
-        "size": 21.897932894551456,
+        "x": 0,
+        "y": 242.545,
+        "size": 21.89,
         "color": "#29695B",
         "pagerank": 0.063041,
-        "betweenness": 0.0,
+        "betweenness": 0,
         "grado": 16,
         "poblacion": 65000
       }
@@ -49,12 +49,12 @@
       "key": "Duitama",
       "attributes": {
         "label": "Duitama",
-        "x": 635.1548564942422,
-        "y": 636.3636363636376,
-        "size": 17.75808626693235,
+        "x": 635.154,
+        "y": 636.363,
+        "size": 17.75,
         "color": "#568B7F",
         "pagerank": 0.052757,
-        "betweenness": 0.0,
+        "betweenness": 0,
         "grado": 13,
         "poblacion": 115000
       }
@@ -63,12 +63,12 @@
       "key": "Paipa",
       "attributes": {
         "label": "Paipa",
-        "x": 567.5368898978443,
-        "y": 545.4545454545453,
-        "size": 17.45576957913169,
+        "x": 567.536,
+        "y": 545.454,
+        "size": 17.45,
         "color": "#598E82",
         "pagerank": 0.052006,
-        "betweenness": 0.0,
+        "betweenness": 0,
         "grado": 13,
         "poblacion": 32000
       }
@@ -77,12 +77,12 @@
       "key": "Villa de Leyva",
       "attributes": {
         "label": "Villa de Leyva",
-        "x": 243.23009567050136,
-        "y": 272.7272727272735,
-        "size": 10.6212386530604,
+        "x": 243.23,
+        "y": 272.727,
+        "size": 10.62,
         "color": "#A4C6BD",
         "pagerank": 0.035028,
-        "betweenness": 0.0,
+        "betweenness": 0,
         "grado": 8,
         "poblacion": 18000
       }
@@ -91,12 +91,12 @@
       "key": "Moniquirá",
       "attributes": {
         "label": "Moniquirá",
-        "x": 202.6917463920864,
-        "y": 727.2727272727282,
-        "size": 20.724090735261555,
+        "x": 202.691,
+        "y": 727.272,
+        "size": 20.72,
         "color": "#367365",
         "pagerank": 0.060125,
-        "betweenness": 0.0,
+        "betweenness": 0,
         "grado": 15,
         "poblacion": 25000
       }
@@ -105,12 +105,12 @@
       "key": "Samacá",
       "attributes": {
         "label": "Samacá",
-        "x": 270.30971298848436,
-        "y": 0.0,
-        "size": 20.309059436829497,
+        "x": 270.309,
+        "y": 0,
+        "size": 20.3,
         "color": "#3A7669",
         "pagerank": 0.059094,
-        "betweenness": 0.0,
+        "betweenness": 0,
         "grado": 15,
         "poblacion": 16000
       }
@@ -119,12 +119,12 @@
       "key": "Ráquira",
       "attributes": {
         "label": "Ráquira",
-        "x": 148.69466515322793,
-        "y": 90.90909090909062,
-        "size": 14.769538876476862,
+        "x": 148.694,
+        "y": 90.909,
+        "size": 14.76,
         "color": "#77A499",
         "pagerank": 0.045333,
-        "betweenness": 0.0,
+        "betweenness": 0,
         "grado": 11,
         "poblacion": 13000
       }
@@ -133,12 +133,12 @@
       "key": "Nobsa",
       "attributes": {
         "label": "Nobsa",
-        "x": 702.6917463920806,
-        "y": 515.272727272728,
-        "size": 11.964957832659056,
+        "x": 702.691,
+        "y": 515.272,
+        "size": 11.96,
         "color": "#95BBB1",
         "pagerank": 0.038366,
-        "betweenness": 0.0,
+        "betweenness": 0,
         "grado": 9,
         "poblacion": 17000
       }
@@ -147,12 +147,12 @@
       "key": "Tibasosa",
       "attributes": {
         "label": "Tibasosa",
-        "x": 662.1533971136656,
-        "y": 484.90909090909133,
-        "size": 16.19658635750659,
+        "x": 662.153,
+        "y": 484.909,
+        "size": 16.19,
         "color": "#67988D",
         "pagerank": 0.048878,
-        "betweenness": 0.0,
+        "betweenness": 0,
         "grado": 12,
         "poblacion": 14000
       }
@@ -161,12 +161,12 @@
       "key": "Firavitoba",
       "attributes": {
         "label": "Firavitoba",
-        "x": 675.6932057726572,
-        "y": 333.45454545454515,
-        "size": 10.461827989453134,
+        "x": 675.693,
+        "y": 333.454,
+        "size": 10.46,
         "color": "#A5C7BE",
         "pagerank": 0.034632,
-        "betweenness": 0.0,
+        "betweenness": 0,
         "grado": 8,
         "poblacion": 9000
       }
@@ -175,12 +175,12 @@
       "key": "Aquitania",
       "attributes": {
         "label": "Aquitania",
-        "x": 756.7699043294871,
-        "y": 60.72727272727332,
-        "size": 17.569691846305577,
+        "x": 756.769,
+        "y": 60.727,
+        "size": 17.56,
         "color": "#588D81",
         "pagerank": 0.052289,
-        "betweenness": 0.0,
+        "betweenness": 0,
         "grado": 13,
         "poblacion": 11000
       }
@@ -189,12 +189,12 @@
       "key": "Tota",
       "attributes": {
         "label": "Tota",
-        "x": 743.2300956704955,
-        "y": 121.27272727272728,
-        "size": 25.0,
+        "x": 743.23,
+        "y": 121.272,
+        "size": 25,
         "color": "#085041",
         "pagerank": 0.070747,
-        "betweenness": 0.0,
+        "betweenness": 0,
         "grado": 18,
         "poblacion": 6000
       }
@@ -203,12 +203,12 @@
       "key": "Gámeza",
       "attributes": {
         "label": "Gámeza",
-        "x": 837.8466028863286,
-        "y": 575.818181818182,
-        "size": 20.378700964112472,
+        "x": 837.846,
+        "y": 575.818,
+        "size": 20.37,
         "color": "#3A7668",
         "pagerank": 0.059267,
-        "betweenness": 0.0,
+        "betweenness": 0,
         "grado": 15,
         "poblacion": 5500
       }
@@ -217,12 +217,12 @@
       "key": "Tópaga",
       "attributes": {
         "label": "Tópaga",
-        "x": 824.3067942273372,
-        "y": 484.90909090909133,
-        "size": 14.658434474568766,
+        "x": 824.306,
+        "y": 484.909,
+        "size": 14.65,
         "color": "#78A59A",
         "pagerank": 0.045057,
-        "betweenness": 0.0,
+        "betweenness": 0,
         "grado": 11,
         "poblacion": 5200
       }
@@ -231,12 +231,12 @@
       "key": "Mongua",
       "attributes": {
         "label": "Mongua",
-        "x": 891.8436841251755,
-        "y": 424.3636363636374,
-        "size": 23.627699615562662,
+        "x": 891.843,
+        "y": 424.363,
+        "size": 23.62,
         "color": "#165B4C",
         "pagerank": 0.067338,
-        "betweenness": 0.0,
+        "betweenness": 0,
         "grado": 17,
         "poblacion": 5800
       }
@@ -245,12 +245,12 @@
       "key": "Socha",
       "attributes": {
         "label": "Socha",
-        "x": 918.9233014431585,
-        "y": 1000.0,
-        "size": 17.431616448282107,
+        "x": 918.923,
+        "y": 1000,
+        "size": 17.43,
         "color": "#5A8E82",
         "pagerank": 0.051946,
-        "betweenness": 0.0,
+        "betweenness": 0,
         "grado": 13,
         "poblacion": 9500
       }
@@ -259,12 +259,12 @@
       "key": "Jericó",
       "attributes": {
         "label": "Jericó",
-        "x": 1000.0,
-        "y": 909.0909090909093,
-        "size": 20.431435299800736,
+        "x": 1000,
+        "y": 909.09,
+        "size": 20.43,
         "color": "#397568",
         "pagerank": 0.059398,
-        "betweenness": 0.0,
+        "betweenness": 0,
         "grado": 15,
         "poblacion": 7000
       }
@@ -273,12 +273,12 @@
       "key": "Belén",
       "attributes": {
         "label": "Belén",
-        "x": 716.2315550510722,
-        "y": 969.8181818181827,
-        "size": 11.865929996175755,
+        "x": 716.231,
+        "y": 969.818,
+        "size": 11.86,
         "color": "#96BCB2",
         "pagerank": 0.03812,
-        "betweenness": 0.0,
+        "betweenness": 0,
         "grado": 9,
         "poblacion": 8500
       }
@@ -286,1110 +286,59 @@
   ],
   "edges": [
     {
-      "key": "e_0_chiquinquirá_jericó",
-      "source": "Chiquinquirá",
-      "target": "Jericó",
-      "attributes": {
-        "weight": 1,
-        "size": 1
+      "data": {
+        "source": "Chiquinquirá",
+        "target": "Socha",
+        "peso": 1
       }
     },
     {
-      "key": "e_1_chiquinquirá_sogamoso",
-      "source": "Chiquinquirá",
-      "target": "Sogamoso",
-      "attributes": {
-        "weight": 2,
-        "size": 1
+      "data": {
+        "source": "Gámeza",
+        "target": "Villa de Leyva",
+        "peso": 1
       }
     },
     {
-      "key": "e_2_chiquinquirá_tibasosa",
-      "source": "Chiquinquirá",
-      "target": "Tibasosa",
-      "attributes": {
-        "weight": 2,
-        "size": 1
+      "data": {
+        "source": "Duitama",
+        "target": "Paipa",
+        "peso": 1
       }
     },
     {
-      "key": "e_3_chiquinquirá_tota",
-      "source": "Chiquinquirá",
-      "target": "Tota",
-      "attributes": {
-        "weight": 2,
-        "size": 1
+      "data": {
+        "source": "Sogamoso",
+        "target": "Tunja",
+        "peso": 1
       }
     },
     {
-      "key": "e_4_chiquinquirá_villa_de_leyva",
-      "source": "Chiquinquirá",
-      "target": "Villa de Leyva",
-      "attributes": {
-        "weight": 2,
-        "size": 1
+      "data": {
+        "source": "Aquitania",
+        "target": "Tota",
+        "peso": 1
       }
     },
     {
-      "key": "e_5_jericó_sogamoso",
-      "source": "Jericó",
-      "target": "Sogamoso",
-      "attributes": {
-        "weight": 2,
-        "size": 1
+      "data": {
+        "source": "Belén",
+        "target": "Tibasosa",
+        "peso": 1
       }
     },
     {
-      "key": "e_6_jericó_tibasosa",
-      "source": "Jericó",
-      "target": "Tibasosa",
-      "attributes": {
-        "weight": 2,
-        "size": 1
+      "data": {
+        "source": "Firavitoba",
+        "target": "Ráquira",
+        "peso": 1
       }
     },
     {
-      "key": "e_7_jericó_tota",
-      "source": "Jericó",
-      "target": "Tota",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_8_jericó_villa_de_leyva",
-      "source": "Jericó",
-      "target": "Villa de Leyva",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_9_sogamoso_tibasosa",
-      "source": "Sogamoso",
-      "target": "Tibasosa",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_10_sogamoso_tota",
-      "source": "Sogamoso",
-      "target": "Tota",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_11_sogamoso_villa_de_leyva",
-      "source": "Sogamoso",
-      "target": "Villa de Leyva",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_12_tibasosa_tota",
-      "source": "Tibasosa",
-      "target": "Tota",
-      "attributes": {
-        "weight": 3,
-        "size": 1.5
-      }
-    },
-    {
-      "key": "e_13_tibasosa_villa_de_leyva",
-      "source": "Tibasosa",
-      "target": "Villa de Leyva",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_14_tota_villa_de_leyva",
-      "source": "Tota",
-      "target": "Villa de Leyva",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_15_chiquinquirá_mongua",
-      "source": "Chiquinquirá",
-      "target": "Mongua",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_16_chiquinquirá_nobsa",
-      "source": "Chiquinquirá",
-      "target": "Nobsa",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_17_chiquinquirá_ráquira",
-      "source": "Chiquinquirá",
-      "target": "Ráquira",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_18_mongua_nobsa",
-      "source": "Mongua",
-      "target": "Nobsa",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_19_mongua_ráquira",
-      "source": "Mongua",
-      "target": "Ráquira",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_20_mongua_villa_de_leyva",
-      "source": "Mongua",
-      "target": "Villa de Leyva",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_21_nobsa_ráquira",
-      "source": "Nobsa",
-      "target": "Ráquira",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_22_nobsa_villa_de_leyva",
-      "source": "Nobsa",
-      "target": "Villa de Leyva",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_23_ráquira_villa_de_leyva",
-      "source": "Ráquira",
-      "target": "Villa de Leyva",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_24_aquitania_mongua",
-      "source": "Aquitania",
-      "target": "Mongua",
-      "attributes": {
-        "weight": 3,
-        "size": 1.5
-      }
-    },
-    {
-      "key": "e_25_aquitania_paipa",
-      "source": "Aquitania",
-      "target": "Paipa",
-      "attributes": {
-        "weight": 3,
-        "size": 1.5
-      }
-    },
-    {
-      "key": "e_26_aquitania_samacá",
-      "source": "Aquitania",
-      "target": "Samacá",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_27_aquitania_socha",
-      "source": "Aquitania",
-      "target": "Socha",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_28_aquitania_tópaga",
-      "source": "Aquitania",
-      "target": "Tópaga",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_29_mongua_paipa",
-      "source": "Mongua",
-      "target": "Paipa",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_30_mongua_samacá",
-      "source": "Mongua",
-      "target": "Samacá",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_31_mongua_socha",
-      "source": "Mongua",
-      "target": "Socha",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_32_mongua_tópaga",
-      "source": "Mongua",
-      "target": "Tópaga",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_33_paipa_samacá",
-      "source": "Paipa",
-      "target": "Samacá",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_34_paipa_socha",
-      "source": "Paipa",
-      "target": "Socha",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_35_paipa_tópaga",
-      "source": "Paipa",
-      "target": "Tópaga",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_36_samacá_socha",
-      "source": "Samacá",
-      "target": "Socha",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_37_samacá_tópaga",
-      "source": "Samacá",
-      "target": "Tópaga",
-      "attributes": {
-        "weight": 3,
-        "size": 1.5
-      }
-    },
-    {
-      "key": "e_38_socha_tópaga",
-      "source": "Socha",
-      "target": "Tópaga",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_39_duitama_jericó",
-      "source": "Duitama",
-      "target": "Jericó",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_40_duitama_moniquirá",
-      "source": "Duitama",
-      "target": "Moniquirá",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_41_duitama_samacá",
-      "source": "Duitama",
-      "target": "Samacá",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_42_duitama_tibasosa",
-      "source": "Duitama",
-      "target": "Tibasosa",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_43_duitama_tota",
-      "source": "Duitama",
-      "target": "Tota",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_44_duitama_tópaga",
-      "source": "Duitama",
-      "target": "Tópaga",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_45_jericó_moniquirá",
-      "source": "Jericó",
-      "target": "Moniquirá",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_46_jericó_samacá",
-      "source": "Jericó",
-      "target": "Samacá",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_47_jericó_tópaga",
-      "source": "Jericó",
-      "target": "Tópaga",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_48_moniquirá_samacá",
-      "source": "Moniquirá",
-      "target": "Samacá",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_49_moniquirá_tibasosa",
-      "source": "Moniquirá",
-      "target": "Tibasosa",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_50_moniquirá_tota",
-      "source": "Moniquirá",
-      "target": "Tota",
-      "attributes": {
-        "weight": 3,
-        "size": 1.5
-      }
-    },
-    {
-      "key": "e_51_moniquirá_tópaga",
-      "source": "Moniquirá",
-      "target": "Tópaga",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_52_samacá_tibasosa",
-      "source": "Samacá",
-      "target": "Tibasosa",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_53_samacá_tota",
-      "source": "Samacá",
-      "target": "Tota",
-      "attributes": {
-        "weight": 4,
-        "size": 2.0
-      }
-    },
-    {
-      "key": "e_54_tibasosa_tópaga",
-      "source": "Tibasosa",
-      "target": "Tópaga",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_55_tota_tópaga",
-      "source": "Tota",
-      "target": "Tópaga",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_56_aquitania_firavitoba",
-      "source": "Aquitania",
-      "target": "Firavitoba",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_57_aquitania_gámeza",
-      "source": "Aquitania",
-      "target": "Gámeza",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_58_aquitania_jericó",
-      "source": "Aquitania",
-      "target": "Jericó",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_59_aquitania_sogamoso",
-      "source": "Aquitania",
-      "target": "Sogamoso",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_60_firavitoba_gámeza",
-      "source": "Firavitoba",
-      "target": "Gámeza",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_61_firavitoba_jericó",
-      "source": "Firavitoba",
-      "target": "Jericó",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_62_firavitoba_mongua",
-      "source": "Firavitoba",
-      "target": "Mongua",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_63_firavitoba_sogamoso",
-      "source": "Firavitoba",
-      "target": "Sogamoso",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_64_gámeza_jericó",
-      "source": "Gámeza",
-      "target": "Jericó",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_65_gámeza_mongua",
-      "source": "Gámeza",
-      "target": "Mongua",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_66_gámeza_sogamoso",
-      "source": "Gámeza",
-      "target": "Sogamoso",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_67_jericó_mongua",
-      "source": "Jericó",
-      "target": "Mongua",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_68_mongua_sogamoso",
-      "source": "Mongua",
-      "target": "Sogamoso",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_69_chiquinquirá_firavitoba",
-      "source": "Chiquinquirá",
-      "target": "Firavitoba",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_70_chiquinquirá_moniquirá",
-      "source": "Chiquinquirá",
-      "target": "Moniquirá",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_71_chiquinquirá_samacá",
-      "source": "Chiquinquirá",
-      "target": "Samacá",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_72_firavitoba_moniquirá",
-      "source": "Firavitoba",
-      "target": "Moniquirá",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_73_firavitoba_samacá",
-      "source": "Firavitoba",
-      "target": "Samacá",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_74_chiquinquirá_duitama",
-      "source": "Chiquinquirá",
-      "target": "Duitama",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_75_chiquinquirá_paipa",
-      "source": "Chiquinquirá",
-      "target": "Paipa",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_76_chiquinquirá_socha",
-      "source": "Chiquinquirá",
-      "target": "Socha",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_77_duitama_paipa",
-      "source": "Duitama",
-      "target": "Paipa",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_78_duitama_socha",
-      "source": "Duitama",
-      "target": "Socha",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_79_paipa_tibasosa",
-      "source": "Paipa",
-      "target": "Tibasosa",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_80_socha_tibasosa",
-      "source": "Socha",
-      "target": "Tibasosa",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_81_aquitania_moniquirá",
-      "source": "Aquitania",
-      "target": "Moniquirá",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_82_aquitania_nobsa",
-      "source": "Aquitania",
-      "target": "Nobsa",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_83_aquitania_ráquira",
-      "source": "Aquitania",
-      "target": "Ráquira",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_84_aquitania_tota",
-      "source": "Aquitania",
-      "target": "Tota",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_85_gámeza_moniquirá",
-      "source": "Gámeza",
-      "target": "Moniquirá",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_86_gámeza_nobsa",
-      "source": "Gámeza",
-      "target": "Nobsa",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_87_gámeza_paipa",
-      "source": "Gámeza",
-      "target": "Paipa",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_88_gámeza_ráquira",
-      "source": "Gámeza",
-      "target": "Ráquira",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_89_gámeza_tota",
-      "source": "Gámeza",
-      "target": "Tota",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_90_moniquirá_nobsa",
-      "source": "Moniquirá",
-      "target": "Nobsa",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_91_moniquirá_paipa",
-      "source": "Moniquirá",
-      "target": "Paipa",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_92_moniquirá_ráquira",
-      "source": "Moniquirá",
-      "target": "Ráquira",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_93_nobsa_paipa",
-      "source": "Nobsa",
-      "target": "Paipa",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_94_nobsa_tota",
-      "source": "Nobsa",
-      "target": "Tota",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_95_paipa_ráquira",
-      "source": "Paipa",
-      "target": "Ráquira",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_96_paipa_tota",
-      "source": "Paipa",
-      "target": "Tota",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_97_ráquira_tota",
-      "source": "Ráquira",
-      "target": "Tota",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_98_belén_samacá",
-      "source": "Belén",
-      "target": "Samacá",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_99_belén_tibasosa",
-      "source": "Belén",
-      "target": "Tibasosa",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_100_belén_tota",
-      "source": "Belén",
-      "target": "Tota",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_101_belén_tópaga",
-      "source": "Belén",
-      "target": "Tópaga",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_102_belén_jericó",
-      "source": "Belén",
-      "target": "Jericó",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_103_belén_socha",
-      "source": "Belén",
-      "target": "Socha",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_104_jericó_socha",
-      "source": "Jericó",
-      "target": "Socha",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_105_socha_tota",
-      "source": "Socha",
-      "target": "Tota",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_106_chiquinquirá_gámeza",
-      "source": "Chiquinquirá",
-      "target": "Gámeza",
-      "attributes": {
-        "weight": 2,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_107_duitama_gámeza",
-      "source": "Duitama",
-      "target": "Gámeza",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_108_duitama_ráquira",
-      "source": "Duitama",
-      "target": "Ráquira",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_109_gámeza_socha",
-      "source": "Gámeza",
-      "target": "Socha",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_110_ráquira_socha",
-      "source": "Ráquira",
-      "target": "Socha",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_111_belén_chiquinquirá",
-      "source": "Belén",
-      "target": "Chiquinquirá",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_112_belén_gámeza",
-      "source": "Belén",
-      "target": "Gámeza",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_113_belén_sogamoso",
-      "source": "Belén",
-      "target": "Sogamoso",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_114_gámeza_samacá",
-      "source": "Gámeza",
-      "target": "Samacá",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_115_samacá_sogamoso",
-      "source": "Samacá",
-      "target": "Sogamoso",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_116_duitama_mongua",
-      "source": "Duitama",
-      "target": "Mongua",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_117_duitama_tunja",
-      "source": "Duitama",
-      "target": "Tunja",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_118_mongua_moniquirá",
-      "source": "Mongua",
-      "target": "Moniquirá",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_119_mongua_tota",
-      "source": "Mongua",
-      "target": "Tota",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_120_mongua_tunja",
-      "source": "Mongua",
-      "target": "Tunja",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_121_moniquirá_tunja",
-      "source": "Moniquirá",
-      "target": "Tunja",
-      "attributes": {
-        "weight": 1,
-        "size": 1
-      }
-    },
-    {
-      "key": "e_122_tota_tunja",
-      "source": "Tota",
-      "target": "Tunja",
-      "attributes": {
-        "weight": 1,
-        "size": 1
+      "data": {
+        "source": "Moniquirá",
+        "target": "Mongua",
+        "peso": 1
       }
     }
   ]

@@ -49,7 +49,46 @@ function loadGraphState() {
   } catch(e) { /* use empty state */ }
 }
 
+function rebuildEdgesFromAportes() {
+  const interacciones = readJSON(PATHS.interacciones, []);
+  if (!interacciones.length) return;
+
+  const byPic = {};
+  interacciones.forEach(a => {
+    if (!a.pictograma_id || !a.municipio_nombre) return;
+    if (!byPic[a.pictograma_id]) byPic[a.pictograma_id] = new Set();
+    byPic[a.pictograma_id].add(a.municipio_nombre);
+  });
+
+  const connMap = new Map();
+  Object.values(byPic).forEach(muns => {
+    const arr = [...muns];
+    for (let i = 0; i < arr.length; i++) {
+      for (let j = i + 1; j < arr.length; j++) {
+        const key = [arr[i], arr[j]].sort().join('||');
+        connMap.set(key, (connMap.get(key) || 0) + 1);
+      }
+    }
+  });
+
+  graphState.edges = [...connMap.entries()].map(([key, peso]) => {
+    const [source, target] = key.split('||');
+    return { data: { source, target, peso } };
+  });
+
+  console.log(`✓ Rebuilt ${graphState.edges.length} edges from ${interacciones.length} aportes`);
+}
+
+function saveGraphEdges() {
+  try {
+    const raw = readJSON(PATHS.graphData, { nodes:[], edges:[] });
+    raw.edges = graphState.edges;
+    writeJSON(PATHS.graphData, raw);
+  } catch(e) { console.warn('Could not persist edges:', e.message); }
+}
+
 loadGraphState();
+rebuildEdgesFromAportes();
 
 // ─── Middleware ───────────────────────────────────────────────────────────
 app.use(cors());
@@ -157,6 +196,7 @@ app.post('/api/aportes', (req, res) => {
     timestamp: new Date().toISOString(),
   });
 
+  saveGraphEdges();
   res.json({ success:true, aporte: newAporte, connections });
 });
 

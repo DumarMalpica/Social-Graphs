@@ -1,0 +1,26 @@
+{
+  "attributes": { "name": "Red cultural Boyacá - Rupestre AI" },
+  "nodes": [
+    {"key":"Tunja","attributes":{"label":"Tunja","x":363.953,"y":94.545,"size":5.0,"color":"#E1F5EE","pagerank":0.021064,"betweenness":0.0,"grado":4,"poblacion":202000}},
+    {"key":"Sogamoso","attributes":{"label":"Sogamoso","x":716.231,"y":424.363,"size":14.84,"color":"#76A398","pagerank":0.045513,"betweenness":0.0,"grado":11,"poblacion":114000}},
+    {"key":"Chiquinquirá","attributes":{"label":"Chiquinquirá","x":0.0,"y":242.545,"size":21.89,"color":"#29695B","pagerank":0.063041,"betweenness":0.0,"grado":16,"poblacion":65000}},
+    {"key":"Duitama","attributes":{"label":"Duitama","x":635.154,"y":636.363,"size":17.75,"color":"#568B7F","pagerank":0.052757,"betweenness":0.0,"grado":13,"poblacion":115000}},
+    {"key":"Paipa","attributes":{"label":"Paipa","x":567.536,"y":545.454,"size":17.45,"color":"#598E82","pagerank":0.052006,"betweenness":0.0,"grado":13,"poblacion":32000}},
+    {"key":"Villa de Leyva","attributes":{"label":"Villa de Leyva","x":243.230,"y":272.727,"size":10.62,"color":"#A4C6BD","pagerank":0.035028,"betweenness":0.0,"grado":8,"poblacion":18000}},
+    {"key":"Moniquirá","attributes":{"label":"Moniquirá","x":202.691,"y":727.272,"size":20.72,"color":"#367365","pagerank":0.060125,"betweenness":0.0,"grado":15,"poblacion":25000}},
+    {"key":"Samacá","attributes":{"label":"Samacá","x":270.309,"y":0.0,"size":20.30,"color":"#3A7669","pagerank":0.059094,"betweenness":0.0,"grado":15,"poblacion":16000}},
+    {"key":"Ráquira","attributes":{"label":"Ráquira","x":148.694,"y":90.909,"size":14.76,"color":"#77A499","pagerank":0.045333,"betweenness":0.0,"grado":11,"poblacion":13000}},
+    {"key":"Nobsa","attributes":{"label":"Nobsa","x":702.691,"y":515.272,"size":11.96,"color":"#95BBB1","pagerank":0.038366,"betweenness":0.0,"grado":9,"poblacion":17000}},
+    {"key":"Tibasosa","attributes":{"label":"Tibasosa","x":662.153,"y":484.909,"size":16.19,"color":"#67988D","pagerank":0.048878,"betweenness":0.0,"grado":12,"poblacion":14000}},
+    {"key":"Firavitoba","attributes":{"label":"Firavitoba","x":675.693,"y":333.454,"size":10.46,"color":"#A5C7BE","pagerank":0.034632,"betweenness":0.0,"grado":8,"poblacion":9000}},
+    {"key":"Aquitania","attributes":{"label":"Aquitania","x":756.769,"y":60.727,"size":17.56,"color":"#588D81","pagerank":0.052289,"betweenness":0.0,"grado":13,"poblacion":11000}},
+    {"key":"Tota","attributes":{"label":"Tota","x":743.230,"y":121.272,"size":25.0,"color":"#085041","pagerank":0.070747,"betweenness":0.0,"grado":18,"poblacion":6000}},
+    {"key":"Gámeza","attributes":{"label":"Gámeza","x":837.846,"y":575.818,"size":20.37,"color":"#3A7668","pagerank":0.059267,"betweenness":0.0,"grado":15,"poblacion":5500}},
+    {"key":"Tópaga","attributes":{"label":"Tópaga","x":824.306,"y":484.909,"size":14.65,"color":"#78A59A","pagerank":0.045057,"betweenness":0.0,"grado":11,"poblacion":5200}},
+    {"key":"Mongua","attributes":{"label":"Mongua","x":891.843,"y":424.363,"size":23.62,"color":"#165B4C","pagerank":0.067338,"betweenness":0.0,"grado":17,"poblacion":5800}},
+    {"key":"Socha","attributes":{"label":"Socha","x":918.923,"y":1000.0,"size":17.43,"color":"#5A8E82","pagerank":0.051946,"betweenness":0.0,"grado":13,"poblacion":9500}},
+    {"key":"Jericó","attributes":{"label":"Jericó","x":1000.0,"y":909.090,"size":20.43,"color":"#397568","pagerank":0.059398,"betweenness":0.0,"grado":15,"poblacion":7000}},
+    {"key":"Belén","attributes":{"label":"Belén","x":716.231,"y":969.818,"size":11.86,"color":"#96BCB2","pagerank":0.038120,"betweenness":0.0,"grado":9,"poblacion":8500}}
+  ],
+  "edges": []
+}

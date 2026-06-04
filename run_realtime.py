@@ -110,17 +110,24 @@ def check_nodejs():
         pass
     return False
 
+def get_npm_cmd():
+    """Retorna el comando npm correcto según el OS"""
+    if platform.system() == 'Windows':
+        return 'npm.cmd'
+    return 'npm'
+
 def install_dependencies():
     """Instala dependencias de npm"""
     if not (SERVER_DIR / 'node_modules').exists():
         log_info('Instalando dependencias de npm...')
         try:
+            npm = get_npm_cmd()
             result = subprocess.run(
-                ['npm', 'install', '--prefer-offline', '--no-audit'],
+                [npm, 'install', '--prefer-offline', '--no-audit'],
                 cwd=SERVER_DIR,
                 capture_output=True,
                 text=True,
-                timeout=120
+                timeout=180
             )
             if result.returncode == 0:
                 log_success('Dependencias instaladas')
@@ -247,7 +254,6 @@ def print_info():
 ║                                                ║
 ║  🔧 Procesos:                                  ║
 ║     • Servidor WebSocket: ACTIVO               ║
-║     • Simulador de eventos: ACTIVO             ║
 ║     • Navegador: ABIERTO                       ║
 ║                                                ║
 ║  ⌨️  Presiona Ctrl+C para detener              ║
@@ -292,9 +298,9 @@ def main():
             cleanup()
             sys.exit(1)
         
-        # 6. Iniciar simulador
-        simulator_proc = start_simulator()
-        time.sleep(1)
+        # 6. Simulador desactivado por petición del usuario
+        # simulator_proc = start_simulator()
+        # time.sleep(1)
         
         # 7. Abrir navegador
         open_browser()
@@ -318,17 +324,17 @@ def main():
                 cleanup()
                 sys.exit(1)
             
-            # Verificar si el simulador está vivo
-            sim_status = simulator_proc.poll()
-            if sim_status is not None and sim_status != 0:
-                simulator_restart_count += 1
-                if simulator_restart_count < 3:
-                    log_warning(f'Simulador terminó, reiniciando... ({simulator_restart_count}/3)')
-                    time.sleep(1)
-                    simulator_proc = start_simulator()
-                else:
-                    log_error('Simulador no se puede reiniciar')
-                    break
+            # Verificar si el simulador está vivo (desactivado)
+            # sim_status = simulator_proc.poll()
+            # if sim_status is not None and sim_status != 0:
+            #     simulator_restart_count += 1
+            #     if simulator_restart_count < 3:
+            #         log_warning(f'Simulador terminó, reiniciando... ({simulator_restart_count}/3)')
+            #         time.sleep(1)
+            #         simulator_proc = start_simulator()
+            #     else:
+            #         log_error('Simulador no se puede reiniciar')
+            #         break
     
     except KeyboardInterrupt:
         pass

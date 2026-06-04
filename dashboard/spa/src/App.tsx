@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { ReactFlowProvider } from 'react-flow-renderer'
 import ImageUpload from './components/ImageUpload'
 import AportesTable from './components/AportesTable'
 import GraphView from './components/GraphView'
@@ -12,6 +13,7 @@ export default function App() {
   }, [connect])
 
   return (
+    <ReactFlowProvider>
     <div className="h-screen bg-gray-50 text-gray-800">
       <header className="h-14 bg-white shadow-sm flex items-center px-4">
         <button className="p-2 rounded-md mr-3 hover:bg-gray-100">☰</button>
@@ -39,5 +41,6 @@ export default function App() {
         </section>
       </main>
     </div>
+    </ReactFlowProvider>
   )
 }
